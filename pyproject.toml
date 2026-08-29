@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rare-quickprot"
+version = "1.9.0" # Don't forget to match with version.py and docs/source/conf.py
+authors = [
+    { name="Anthony Aylward", email="anthony.aylward@protonmail.com" },
+]
+description = "homology-based method for predicting gene models across entire genomes"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "biopython"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/anthony-aylward/quickprot"
+"Documentation" = "https://github.com/anthony-aylward/quickprot"
+
+[project.scripts]
+bioleach = "rare_quickprot.quickprot:main"
+
+[tool.setuptools]
+package-dir = {bioleach="src/rare_quickprot"}
+
