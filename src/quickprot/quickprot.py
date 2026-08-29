@@ -14,9 +14,6 @@ from Bio import SeqIO
 from collections import defaultdict
 from argparse import RawTextHelpFormatter
 
-if __name__ == '__main__':
-    main()
-
 NCBI2TransDecoder_genetic_code = {1: "Universal",
                                   2: "Mitochondrial-Vertebrates",
                                   3: "Mitochondrial-Yeast",
@@ -665,3 +662,7 @@ the fused ORF will be split in subsequent analysis.""")
         else:
             for file in intermediate_files:
                 rm(file)
+
+if __name__ == '__main__':
+    main()
+

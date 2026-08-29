@@ -26,7 +26,7 @@ dependencies = [
 "Documentation" = "https://github.com/anthony-aylward/quickprot"
 
 [project.scripts]
-quickprot = "quickprot.quickprot:main"
+quickprot = "quickprot:main"
 
 [tool.setuptools]
 package-dir = {quickprot="src/quickprot"}
