@@ -608,7 +608,6 @@ the fused ORF will be split in subsequent analysis.""")
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
-        os.chdir(os.path.dirname(output_dir))
         cmd = f"{os.path.join(sys.path[0], 'split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
         #subprocess.run(cmd, shell=True)
         run_cmd(cmd, jobname=None, capture_output=False)
