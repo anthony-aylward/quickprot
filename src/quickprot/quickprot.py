@@ -505,7 +505,7 @@ the fused ORF will be split in subsequent analysis.""")
         #subprocess.run(cmd, shell=True, capture_output=False)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gtf_genome_to_cdna_fasta.pl')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
-    cmd = f"{os.path.join(sys.path[0], 'script/gtf_genome_to_cdna_fasta.py')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
+    cmd = f"{os.path.join(sys.path[0], 'gtf_genome_to_cdna_fasta.py')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
     #subprocess.run(cmd, shell=True, capture_output=True)
     run_cmd(cmd, jobname=None, capture_output=debug_info)
 
@@ -538,40 +538,40 @@ the fused ORF will be split in subsequent analysis.""")
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
-        cmd = f"{os.path.join(sys.path[0], 'script/split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
+        cmd = f"{os.path.join(sys.path[0], 'split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
         #subprocess.run(cmd, shell=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
 
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
         #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.pep.fasta"
-        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.tmp.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.pep.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'extract_sequence_from_gff3.py')} {prefix}.tmp.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.pep.fasta"
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
-        cmd = f"{os.path.join(sys.path[0], 'script/add_type_gff3.py')} {prefix}.tmp.gff3 {prefix}.pep.fasta -o {prefix}.gff3"
+        cmd = f"{os.path.join(sys.path[0], 'add_type_gff3.py')} {prefix}.tmp.gff3 {prefix}.pep.fasta -o {prefix}.gff3"
         run_cmd(cmd, jobname=None, capture_output=False)
         rm(f"{prefix}.tmp.gff3")
         
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
         #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.cds.fasta"
-        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.cds.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'extract_sequence_from_gff3.py')} {prefix}.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.cds.fasta"
         
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
-        cmd = f"{os.path.join(sys.path[0], 'script/get_longest_transcript_gff3.py')} {prefix}.gff3 -o {prefix}.longest.gff3 --header 'CMD: {main_cmd}'"
+        cmd = f"{os.path.join(sys.path[0], 'get_longest_transcript_gff3.py')} {prefix}.gff3 -o {prefix}.longest.gff3 --header 'CMD: {main_cmd}'"
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
         #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.longest.pep.fasta"
-        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.longest.pep.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.longest.pep.fasta"
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
         #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.longest.cds.fasta"
-        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.longest.cds.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.longest.cds.fasta"
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
@@ -609,40 +609,40 @@ the fused ORF will be split in subsequent analysis.""")
         #subprocess.run(cmd, shell=True, capture_output=True)
         #run_cmd(cmd, jobname=None, capture_output=debug_info)
         
-        cmd = f"{os.path.join(sys.path[0], 'script/split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
+        cmd = f"{os.path.join(sys.path[0], 'split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
         #subprocess.run(cmd, shell=True)
         run_cmd(cmd, jobname=None, capture_output=False)
         
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
         #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.pep.fasta"
         #subprocess.run(cmd, shell=True, capture_output=True)
-        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.tmp.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.pep.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'extract_sequence_from_gff3.py')} {prefix}.tmp.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.pep.fasta"
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
-        cmd = f"{os.path.join(sys.path[0], 'script/add_type_gff3.py')} {prefix}.tmp.gff3 {prefix}.pep.fasta -o {prefix}.gff3"
+        cmd = f"{os.path.join(sys.path[0], 'add_type_gff3.py')} {prefix}.tmp.gff3 {prefix}.pep.fasta -o {prefix}.gff3"
         run_cmd(cmd, jobname=None, capture_output=False)
         rm(f"{prefix}.tmp.gff3")
         
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
         #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.cds.fasta"
         #subprocess.run(cmd, shell=True, capture_output=True)
-        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.cds.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'extract_sequence_from_gff3.py')} {prefix}.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.cds.fasta"
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
-        cmd = f"{os.path.join(sys.path[0], 'script/get_longest_transcript_gff3.py')} {prefix}.gff3 -o {prefix}.longest.gff3 --header 'CMD: {main_cmd}'"
+        cmd = f"{os.path.join(sys.path[0], 'get_longest_transcript_gff3.py')} {prefix}.gff3 -o {prefix}.longest.gff3 --header 'CMD: {main_cmd}'"
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
         #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.longest.pep.fasta"
         #subprocess.run(cmd, shell=True, capture_output=True)
-        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.longest.pep.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.longest.pep.fasta"
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
         #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
         #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.longest.cds.fasta"
         #subprocess.run(cmd, shell=True, capture_output=True)
-        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.longest.cds.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.longest.cds.fasta"
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
         intermediate_files = [#os.path.realpath(f'{prefix}.miniprot_output.gff3'),
