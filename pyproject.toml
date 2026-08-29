@@ -30,4 +30,19 @@ quickprot = "quickprot.quickprot:main"
 
 [tool.setuptools]
 package-dir = {quickprot="src/quickprot"}
+script-files = [
+    "src/quickprot/quckprot.py",
+    add_type_gff3.py
+extract_sequence_from_gff3.py
+filter_repeatPeps_from_gff3.py
+get_intron_from_gff3.py
+get_longest_transcript_gff3.py
+gtf_genome_to_cdna_fasta.py
+rename_gff3.py
+sm2rmForFasta.py
+sort_gff3.py
+split_and_filter_gene_model.py
+stat_gff3.py
+update_gff3_from_minibusco.py
 
+]
