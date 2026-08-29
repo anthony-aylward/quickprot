@@ -60,11 +60,12 @@ def check_dependencies(ORFSoftware, miniprot_PATH=None, TransDecoder_PATH=None):
                     TransDecoder_PATH = PATH
                     break
         if TransDecoder_PATH == None:
-            print('Error: TransDecoder does not exist!')
+            print('Error: TransDecoder does not exist! Trying TD2')
+            ORFSoftware = "TD2"
         else:
             print(f'TransDecoder PATH: {TransDecoder_PATH}')
         
-    if miniprot_PATH == None or TransDecoder_PATH == None:
+    if miniprot_PATH == None:
         sys.exit()
         
     if ORFSoftware=="TransDecoder":
