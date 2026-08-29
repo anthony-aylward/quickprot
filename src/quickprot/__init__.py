@@ -1,0 +1,1 @@
+from quickprot.version import __version__

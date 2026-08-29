@@ -1,3 +1,15 @@
+```sh
+conda create -n quickprot -c conda-forge -c bioconda \
+  biopython perl miniprot transdecoder pip
+conda activate quickprot
+pip install rare-quickprot
+```
+
+alternatively using the `conda-environment.yml` file included in this repo:
+
+```sh
+conda env create -f conda-environment.yml
+```
 
 
 # QuickProt User Guide

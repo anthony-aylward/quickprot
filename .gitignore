@@ -1,0 +1,11 @@
+*.pyc
+/dist/
+/*.egg-info
+/build/
+/venv/
+.DS_Store
+/docs/build/
+__pycache__
+_build
+/public/
+gitignored

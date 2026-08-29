@@ -13,105 +13,6 @@ import subprocess
 from Bio import SeqIO
 from collections import defaultdict
 from argparse import RawTextHelpFormatter
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="""
-Quick genome annotation base on protein.
-
-Translate Tables/Genetic Codes:
-1: The Standard
-2: The Vertebrate Mitochondrial
-3: The Yeast Mitochondrial
-4: The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma
-5: The Invertebrate Mitochondrial
-6: The Ciliate, Dasycladacean and Hexamita Nuclear
-9: The Echinoderm and Flatworm Mitochondrial
-10: The Euplotid Nuclear
-11: The Bacterial, Archaeal and Plant Plastid        ## TransDecoder not supported
-12: The Alternative Yeast Nuclear
-13: The Ascidian Mitochondrial
-14: The Alternative Flatworm Mitochondrial           ## TransDecoder not supported
-15: Blepharisma Macronuclear
-16: Chlorophycean Mitochondrial
-21: Trematode Mitochondrial                          
-22: Scenedesmus obliquus Mitochondrial                 
-23: Thraustochytrium Mitochondrial                   
-24: Pterobranchia Mitochondrial                      
-25: Candidate Division SR1 and Gracilibacteria       
-26: Pachysolen tannophilus Nuclear                   
-27: Karyorelict Nuclear                              ## TransDecoder not supported
-28: Condylostoma Nuclear                             ## TransDecoder not supported
-29: Mesodinium Nuclear
-30: Peritrich Nuclear
-31: Blastocrithidia Nuclear                          ## TransDecoder not supported
-32: Balanophoraceae Plastid                          ## TransDecoder not supported
-33: Cephalodiscidae Mitochondrial                    ## TransDecoder not supported
-Reference website: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=tgencodes
-""", add_help=False, epilog='Date:2026/04/28 Author:Guisen Chen Email:thecgs001@foxmail.com', formatter_class=RawTextHelpFormatter)
-    required = parser.add_argument_group('required arguments')
-    optional = parser.add_argument_group('optional arguments')
-    required.add_argument('-q', '--query', metavar='str', help='A file of query protein fasta format, supports .gz compressed files.', required=True)
-    required.add_argument('-g', '--genome', metavar='str', help='A file of genome fasta format, supports .gz compressed files.', required=True)
-    optional.add_argument('-p', '--prefix', metavar='str', default='quickprot', help='Prefix of a output file. default=quickprot')
-    optional.add_argument('-i', '--identity', metavar='float', type=float, default=0.8, help='Alignment identity (0-1). default=0.8')
-    optional.add_argument('-c', '--cover', metavar='float', default=0.6, type=float,
-                          help='minimum query cover (0-1) to report an alignment. defualt=0.6')
-    optional.add_argument('-ot', '--outs', metavar='float', type=float, default=0.95, help='miniprot optional: Output score at least bestScore (0-1). default=0.95')
-    optional.add_argument('-ps', '--preserve_the_starting_AA_number', metavar='int', type=int, default=0, 
-                          help='The query sequence is consistent with the first [INT] amino acids of the target sequence, which can effectively inhibit pseudogenes. default=0')
-    optional.add_argument('-ms', '--max_in_stop_number', metavar='int', type=str, default="inf", 
-                          help='The maximum number of allowed in-frame stop codons in the amino acids aligned (0-inf) , which can effectively inhibit pseudogenes. default=inf')
-    optional.add_argument('-an', '--align_number', metavar='int', type=int, default=0, 
-                          help='It means that only when there are [INT] protein alignments in a genomic region can the region be defaulted to be a coding region. default=0')
-    optional.add_argument('-op','--overlap', metavar='float', type=float, default=0.8, help="""If the overlap of predicted ORFs in a transcript is less than default value (0-1). default=0.8, 
-they will be dissected.""")
-    optional.add_argument('-t', '--thread', metavar='int', type=int, default=os.cpu_count(), help=f'Thread number of run miniprot sortware. defualt={os.cpu_count()}')
-    optional.add_argument('-G', '--genetic_code', metavar='int', type=int, default=1, help="Genetic code. default=1")
-    optional.add_argument('-j', '--splice_model', metavar='int', type=int, default=1, help="miniprot optional: Splice model for the target genome: 2=vertebrate/insect, 1=general, 0=none. The vertebrate/insect model considers ‘G|GTR...YYYNYAG|’ as the optimal splicing sequence and penalizes other sequences based on profiles in Sibley et al (2016). According to Irimia and Roy (2008) and Sheth et al (2006), the first ‘G’ in the donor exon and the poly-Y close to the acceptor may not be conserved in some species. The general model takes ‘|GTR...YAG|’ as the optimal sequence. Both models also slightly prefer less frequent splice sites including ‘G|GC...YAG|’ and ‘|AT...AC|’.. default=1")
-    optional.add_argument('-s', '--skip_align', action='store_true', help="Skip run miniprot step. default=False")
-    optional.add_argument('-m', '--mask', action='store_true', help="Soft-masked (dna_sm) genome convert to masked(dna_rm) genome. default=False")
-    optional.add_argument('-n', '--noclean', action='store_true', help="Do not delete intermediate files. default=False")
-    optional.add_argument('-b', '--single_best_only', action='store_true', help="""Retain only the single best orf per transcript. default=False
-It is not recommended to use it because when two reference proteins overlap during alignment, 
-it can lead to fusion during transcript assembly. If a transcript is not set with only one ORF,
-the fused ORF will be split in subsequent analysis.""")
-    optional.add_argument('-miniprot_PATH', '--miniprot_PATH', metavar='str', help="miniprot PATH default=auto.", default=None)
-    optional.add_argument('-TransDecoder_PATH', '--TransDecoder_PATH', metavar='str', help="TransDecoder PATH default=auto.", default=None)
-    optional.add_argument('-ORFSoftware', '--ORFSoftware', metavar='str', 
-                          help="Tool for selecting predicted ORFs, TransDecoder or TD2. default=TransDecoder", default="TransDecoder")
-    optional.add_argument('--debug_info', action='store_false', help="Display all software output details. default=False")
-    optional.add_argument('-h', '--help', action='help', help="Show program's help message and exit.")
-    optional.add_argument('-v', '--version', action='version', version='v1.9.0', help="Show program's version number and exit.")
-    args = parser.parse_args()
-    genetic_code = args.genetic_code
-    query_file = os.path.realpath(args.query)
-    genome_file = os.path.realpath(args.genome)
-    thread = args.thread
-    mask = args.mask
-    identity = args.identity
-    cover = args.cover
-    align_number = args.align_number
-    if args.preserve_the_starting_AA_number == "inf":
-        preserve_the_starting_AA_number = math.inf
-    else:
-        preserve_the_starting_AA_number = int(args.preserve_the_starting_AA_number)
-    if args.max_in_stop_number == 'inf':
-        in_stop_number = math.inf
-    else:
-        in_stop_number = int(args.max_in_stop_number)
-    prefix = args.prefix
-    single_best_only = args.single_best_only
-    skip_align = args.skip_align
-    noclean = args.noclean
-    outs = args.outs
-    overlap = args.overlap
-    TransDecoder_PATH = args.TransDecoder_PATH
-    miniprot_PATH = args.miniprot_PATH
-    ORFSoftware = args.ORFSoftware
-    debug_info = args.debug_info
-    splice_model = args.splice_model
-    main_cmd = ' '.join(sys.argv)
-    print(f'\n\033[035mCMD: {main_cmd}\033[0m\n')
     
 NCBI2TransDecoder_genetic_code = {1: "Universal",
                                   2: "Mitochondrial-Vertebrates",
@@ -488,176 +389,275 @@ def transcript_assembly(miniprot_output, identity, cover, prefix, query_file, pr
 
 
 ## main
-miniprot_PATH, TransDecoder_PATH = check_dependencies(ORFSoftware, miniprot_PATH, TransDecoder_PATH)
+def main():
+    parser = argparse.ArgumentParser(description="""
+Quick genome annotation base on protein.
 
-if os.path.dirname(prefix) != '':
-    mkdir(os.path.realpath(os.path.dirname(prefix)))
-    
-miniprot_output = prefix + '.' + os.path.splitext(os.path.basename(query_file))[0] + '.miniprot_output.outs_' + str(outs) + '.gff3'
-
-run_miniprot(query_file=query_file, genome_file=genome_file, output=miniprot_output, 
-             thread=thread, mask=mask, skip_align=skip_align, outs=args.outs, genetic_code=genetic_code, splice_model=splice_model)
-
-transcript_assembly(miniprot_output, identity, cover, prefix, query_file, preserve_the_starting_AA_number, align_number, in_stop_number)
-
-cmd = f"{os.path.join(TransDecoder_PATH, 'util/gtf_to_alignment_gff3.pl')} {prefix}.transcript.gtf > {prefix}.transcript.gff3"
-#subprocess.run(cmd, shell=True, capture_output=False)
-run_cmd(cmd, jobname=None, capture_output=debug_info)
-#cmd = f"{os.path.join(TransDecoder_PATH, 'util/gtf_genome_to_cdna_fasta.pl')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
-cmd = f"{os.path.join(sys.path[0], 'script/gtf_genome_to_cdna_fasta.py')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
-#subprocess.run(cmd, shell=True, capture_output=True)
-run_cmd(cmd, jobname=None, capture_output=debug_info)
-
-if os.path.dirname(prefix) == '':
-    output_dir = os.getcwd()
-else:
-    output_dir = os.path.realpath(os.path.dirname(prefix))
-
-if ORFSoftware=="TransDecoder":
-    cmd = f"{os.path.join(TransDecoder_PATH, 'TransDecoder.LongOrfs')} -t {prefix}.transcript.fasta --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --output_dir {output_dir}"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-
-    cmd = f"{os.path.join(TransDecoder_PATH, 'TransDecoder.Predict')} -t {prefix}.transcript.fasta --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --output_dir {output_dir}"
-    #exec_blastp=True
-    #if exec_blastp:
-    #    subcmd = f"diamond blastp --query {os.path.join(output_dir, prefix+'.transcript.fasta.transdecoder_dir', 'longest_orfs.pep')} --db {query_file} --outfmt 6 --evalue 1e-5 --threads {thread} --max-target-seqs 1  > blastp.outfmt6.tsv"
-    #    run_cmd(subcmd, jobname=None, capture_output=debug_info)
-    #    cmd += " --retain_blastp_hits blastp.outfmt6.tsv"
-
-    if single_best_only == True:
-        cmd += ' --single_best_only'
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    res = run_cmd(cmd, jobname=None, capture_output=debug_info)
-
-    if res==False:
-        run_cmd(cmd+" --no_refine_starts", jobname=None, capture_output=debug_info)
-    
-    cmd = f"{os.path.join(TransDecoder_PATH, 'util/cdna_alignment_orf_to_genome_orf.pl')} {prefix}.transcript.fasta.transdecoder.gff3 {prefix}.transcript.gff3 {prefix}.transcript.fasta > {prefix}.transcript.genome.gff3"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    cmd = f"{os.path.join(sys.path[0], 'script/split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
-    #subprocess.run(cmd, shell=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-
-    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
-    #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.pep.fasta"
-    cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.tmp.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.pep.fasta"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    cmd = f"{os.path.join(sys.path[0], 'script/add_type_gff3.py')} {prefix}.tmp.gff3 {prefix}.pep.fasta -o {prefix}.gff3"
-    run_cmd(cmd, jobname=None, capture_output=False)
-    rm(f"{prefix}.tmp.gff3")
-    
-    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
-    #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.cds.fasta"
-    cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.cds.fasta"
-    
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    cmd = f"{os.path.join(sys.path[0], 'script/get_longest_transcript_gff3.py')} {prefix}.gff3 -o {prefix}.longest.gff3 --header 'CMD: {main_cmd}'"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
-    #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.longest.pep.fasta"
-    cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.longest.pep.fasta"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
-    #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.longest.cds.fasta"
-    cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.longest.cds.fasta"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    intermediate_files = [#os.path.realpath(f'{prefix}.miniprot_output.gff3'),
-                          #os.path.realpath(f'{prefix}.transcript.gtf'),
-                          os.path.realpath(f'{prefix}.transcript.gff3'),
-                          os.path.realpath(f'{prefix}.transcript.genome.gff3'),
-                          *tuple(glob.glob(os.path.realpath(f'{prefix}.transcript.fasta')+'*'))]
-    if noclean:
-        pass
+Translate Tables/Genetic Codes:
+1: The Standard
+2: The Vertebrate Mitochondrial
+3: The Yeast Mitochondrial
+4: The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma
+5: The Invertebrate Mitochondrial
+6: The Ciliate, Dasycladacean and Hexamita Nuclear
+9: The Echinoderm and Flatworm Mitochondrial
+10: The Euplotid Nuclear
+11: The Bacterial, Archaeal and Plant Plastid        ## TransDecoder not supported
+12: The Alternative Yeast Nuclear
+13: The Ascidian Mitochondrial
+14: The Alternative Flatworm Mitochondrial           ## TransDecoder not supported
+15: Blepharisma Macronuclear
+16: Chlorophycean Mitochondrial
+21: Trematode Mitochondrial                          
+22: Scenedesmus obliquus Mitochondrial                 
+23: Thraustochytrium Mitochondrial                   
+24: Pterobranchia Mitochondrial                      
+25: Candidate Division SR1 and Gracilibacteria       
+26: Pachysolen tannophilus Nuclear                   
+27: Karyorelict Nuclear                              ## TransDecoder not supported
+28: Condylostoma Nuclear                             ## TransDecoder not supported
+29: Mesodinium Nuclear
+30: Peritrich Nuclear
+31: Blastocrithidia Nuclear                          ## TransDecoder not supported
+32: Balanophoraceae Plastid                          ## TransDecoder not supported
+33: Cephalodiscidae Mitochondrial                    ## TransDecoder not supported
+Reference website: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=tgencodes
+""", add_help=False, epilog='Date:2026/04/28 Author:Guisen Chen Email:thecgs001@foxmail.com', formatter_class=RawTextHelpFormatter)
+    required = parser.add_argument_group('required arguments')
+    optional = parser.add_argument_group('optional arguments')
+    required.add_argument('-q', '--query', metavar='str', help='A file of query protein fasta format, supports .gz compressed files.', required=True)
+    required.add_argument('-g', '--genome', metavar='str', help='A file of genome fasta format, supports .gz compressed files.', required=True)
+    optional.add_argument('-p', '--prefix', metavar='str', default='quickprot', help='Prefix of a output file. default=quickprot')
+    optional.add_argument('-i', '--identity', metavar='float', type=float, default=0.8, help='Alignment identity (0-1). default=0.8')
+    optional.add_argument('-c', '--cover', metavar='float', default=0.6, type=float,
+                            help='minimum query cover (0-1) to report an alignment. defualt=0.6')
+    optional.add_argument('-ot', '--outs', metavar='float', type=float, default=0.95, help='miniprot optional: Output score at least bestScore (0-1). default=0.95')
+    optional.add_argument('-ps', '--preserve_the_starting_AA_number', metavar='int', type=int, default=0, 
+                            help='The query sequence is consistent with the first [INT] amino acids of the target sequence, which can effectively inhibit pseudogenes. default=0')
+    optional.add_argument('-ms', '--max_in_stop_number', metavar='int', type=str, default="inf", 
+                            help='The maximum number of allowed in-frame stop codons in the amino acids aligned (0-inf) , which can effectively inhibit pseudogenes. default=inf')
+    optional.add_argument('-an', '--align_number', metavar='int', type=int, default=0, 
+                            help='It means that only when there are [INT] protein alignments in a genomic region can the region be defaulted to be a coding region. default=0')
+    optional.add_argument('-op','--overlap', metavar='float', type=float, default=0.8, help="""If the overlap of predicted ORFs in a transcript is less than default value (0-1). default=0.8, 
+they will be dissected.""")
+    optional.add_argument('-t', '--thread', metavar='int', type=int, default=os.cpu_count(), help=f'Thread number of run miniprot sortware. defualt={os.cpu_count()}')
+    optional.add_argument('-G', '--genetic_code', metavar='int', type=int, default=1, help="Genetic code. default=1")
+    optional.add_argument('-j', '--splice_model', metavar='int', type=int, default=1, help="miniprot optional: Splice model for the target genome: 2=vertebrate/insect, 1=general, 0=none. The vertebrate/insect model considers ‘G|GTR...YYYNYAG|’ as the optimal splicing sequence and penalizes other sequences based on profiles in Sibley et al (2016). According to Irimia and Roy (2008) and Sheth et al (2006), the first ‘G’ in the donor exon and the poly-Y close to the acceptor may not be conserved in some species. The general model takes ‘|GTR...YAG|’ as the optimal sequence. Both models also slightly prefer less frequent splice sites including ‘G|GC...YAG|’ and ‘|AT...AC|’.. default=1")
+    optional.add_argument('-s', '--skip_align', action='store_true', help="Skip run miniprot step. default=False")
+    optional.add_argument('-m', '--mask', action='store_true', help="Soft-masked (dna_sm) genome convert to masked(dna_rm) genome. default=False")
+    optional.add_argument('-n', '--noclean', action='store_true', help="Do not delete intermediate files. default=False")
+    optional.add_argument('-b', '--single_best_only', action='store_true', help="""Retain only the single best orf per transcript. default=False
+It is not recommended to use it because when two reference proteins overlap during alignment, 
+it can lead to fusion during transcript assembly. If a transcript is not set with only one ORF,
+the fused ORF will be split in subsequent analysis.""")
+    optional.add_argument('-miniprot_PATH', '--miniprot_PATH', metavar='str', help="miniprot PATH default=auto.", default=None)
+    optional.add_argument('-TransDecoder_PATH', '--TransDecoder_PATH', metavar='str', help="TransDecoder PATH default=auto.", default=None)
+    optional.add_argument('-ORFSoftware', '--ORFSoftware', metavar='str', 
+                            help="Tool for selecting predicted ORFs, TransDecoder or TD2. default=TransDecoder", default="TransDecoder")
+    optional.add_argument('--debug_info', action='store_false', help="Display all software output details. default=False")
+    optional.add_argument('-h', '--help', action='help', help="Show program's help message and exit.")
+    optional.add_argument('-v', '--version', action='version', version='v1.9.0', help="Show program's version number and exit.")
+    args = parser.parse_args()
+    genetic_code = args.genetic_code
+    query_file = os.path.realpath(args.query)
+    genome_file = os.path.realpath(args.genome)
+    thread = args.thread
+    mask = args.mask
+    identity = args.identity
+    cover = args.cover
+    align_number = args.align_number
+    if args.preserve_the_starting_AA_number == "inf":
+        preserve_the_starting_AA_number = math.inf
     else:
-        for file in intermediate_files:
-            #print(file)
-            rm(file)
-            
-elif ORFSoftware=="TD2":
-    cmd = f"TD2.LongOrfs --precise -t {prefix}.transcript.fasta -G {genetic_code} -O {output_dir} -@ {thread}"
+        preserve_the_starting_AA_number = int(args.preserve_the_starting_AA_number)
+    if args.max_in_stop_number == 'inf':
+        in_stop_number = math.inf
+    else:
+        in_stop_number = int(args.max_in_stop_number)
+    prefix = args.prefix
+    single_best_only = args.single_best_only
+    skip_align = args.skip_align
+    noclean = args.noclean
+    outs = args.outs
+    overlap = args.overlap
+    TransDecoder_PATH = args.TransDecoder_PATH
+    miniprot_PATH = args.miniprot_PATH
+    ORFSoftware = args.ORFSoftware
+    debug_info = args.debug_info
+    splice_model = args.splice_model
+    main_cmd = ' '.join(sys.argv)
+    print(f'\n\033[035mCMD: {main_cmd}\033[0m\n')
+
+    miniprot_PATH, TransDecoder_PATH = check_dependencies(ORFSoftware, miniprot_PATH, TransDecoder_PATH)
+
+    if os.path.dirname(prefix) != '':
+        mkdir(os.path.realpath(os.path.dirname(prefix)))
+        
+    miniprot_output = prefix + '.' + os.path.splitext(os.path.basename(query_file))[0] + '.miniprot_output.outs_' + str(outs) + '.gff3'
+
+    run_miniprot(query_file=query_file, genome_file=genome_file, output=miniprot_output, 
+                thread=thread, mask=mask, skip_align=skip_align, outs=args.outs, genetic_code=genetic_code, splice_model=splice_model)
+
+    transcript_assembly(miniprot_output, identity, cover, prefix, query_file, preserve_the_starting_AA_number, align_number, in_stop_number)
+
+    cmd = f"{os.path.join(TransDecoder_PATH, 'util/gtf_to_alignment_gff3.pl')} {prefix}.transcript.gtf > {prefix}.transcript.gff3"
+    #subprocess.run(cmd, shell=True, capture_output=False)
+    run_cmd(cmd, jobname=None, capture_output=debug_info)
+    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gtf_genome_to_cdna_fasta.pl')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
+    cmd = f"{os.path.join(sys.path[0], 'script/gtf_genome_to_cdna_fasta.py')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
     #subprocess.run(cmd, shell=True, capture_output=True)
     run_cmd(cmd, jobname=None, capture_output=debug_info)
 
-    infile = os.path.basename(f"{prefix}.transcript.fasta")
-    cmd = f"TD2.Predict --precise -t {infile} -G {genetic_code} -O ./"
-    if single_best_only == True:
-        pass
+    if os.path.dirname(prefix) == '':
+        output_dir = os.getcwd()
     else:
-        #pass
-        cmd += ' --all-good'
-    
-    os.chdir(output_dir)
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    os.chdir('../')
+        output_dir = os.path.realpath(os.path.dirname(prefix))
 
-    cmd = f"{os.path.join(TransDecoder_PATH, 'util/cdna_alignment_orf_to_genome_orf.pl')} {prefix}.transcript.fasta.TD2.gff3 {prefix}.transcript.gff3 {prefix}.transcript.fasta > {prefix}.transcript.genome.gff3"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    cmd = f"{os.path.join(sys.path[0], 'script/split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
-    #subprocess.run(cmd, shell=True)
-    run_cmd(cmd, jobname=None, capture_output=False)
-    
-    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
-    #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.pep.fasta"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.tmp.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.pep.fasta"
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    cmd = f"{os.path.join(sys.path[0], 'script/add_type_gff3.py')} {prefix}.tmp.gff3 {prefix}.pep.fasta -o {prefix}.gff3"
-    run_cmd(cmd, jobname=None, capture_output=False)
-    rm(f"{prefix}.tmp.gff3")
-    
-    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
-    #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.cds.fasta"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.cds.fasta"
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    cmd = f"{os.path.join(sys.path[0], 'script/get_longest_transcript_gff3.py')} {prefix}.gff3 -o {prefix}.longest.gff3 --header 'CMD: {main_cmd}'"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
-    #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.longest.pep.fasta"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.longest.pep.fasta"
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
-    #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.longest.cds.fasta"
-    #subprocess.run(cmd, shell=True, capture_output=True)
-    cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.longest.cds.fasta"
-    run_cmd(cmd, jobname=None, capture_output=debug_info)
-    
-    intermediate_files = [#os.path.realpath(f'{prefix}.miniprot_output.gff3'),
-                          #os.path.realpath(f'{prefix}.transcript.gtf'),
-                          os.path.realpath(f'{prefix}.transcript.gff3'),
-                          os.path.realpath(f'{prefix}.transcript.genome.gff3'),
-                          os.path.realpath(os.path.join(os.path.dirname(prefix),'longest_orfs.cds')),
-                          os.path.realpath(os.path.join(os.path.dirname(prefix),'longest_orfs.pep')),
-                          os.path.realpath(os.path.join(os.path.dirname(prefix),'longest_orfs.gff3')),
-                          os.path.realpath(os.path.join(os.path.dirname(prefix),'psauron_score.csv')),
-                          *tuple(glob.glob(os.path.realpath(f'{prefix}.transcript.fasta')+'*'))]
-                          
-    #print(intermediate_files)
-    
-    if noclean:
-        pass
-    else:
-        for file in intermediate_files:
-            rm(file)
+    if ORFSoftware=="TransDecoder":
+        cmd = f"{os.path.join(TransDecoder_PATH, 'TransDecoder.LongOrfs')} -t {prefix}.transcript.fasta --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --output_dir {output_dir}"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+
+        cmd = f"{os.path.join(TransDecoder_PATH, 'TransDecoder.Predict')} -t {prefix}.transcript.fasta --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --output_dir {output_dir}"
+        #exec_blastp=True
+        #if exec_blastp:
+        #    subcmd = f"diamond blastp --query {os.path.join(output_dir, prefix+'.transcript.fasta.transdecoder_dir', 'longest_orfs.pep')} --db {query_file} --outfmt 6 --evalue 1e-5 --threads {thread} --max-target-seqs 1  > blastp.outfmt6.tsv"
+        #    run_cmd(subcmd, jobname=None, capture_output=debug_info)
+        #    cmd += " --retain_blastp_hits blastp.outfmt6.tsv"
+
+        if single_best_only == True:
+            cmd += ' --single_best_only'
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        res = run_cmd(cmd, jobname=None, capture_output=debug_info)
+
+        if res==False:
+            run_cmd(cmd+" --no_refine_starts", jobname=None, capture_output=debug_info)
+        
+        cmd = f"{os.path.join(TransDecoder_PATH, 'util/cdna_alignment_orf_to_genome_orf.pl')} {prefix}.transcript.fasta.transdecoder.gff3 {prefix}.transcript.gff3 {prefix}.transcript.fasta > {prefix}.transcript.genome.gff3"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        cmd = f"{os.path.join(sys.path[0], 'script/split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
+        #subprocess.run(cmd, shell=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+
+        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
+        #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.pep.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.tmp.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.pep.fasta"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        cmd = f"{os.path.join(sys.path[0], 'script/add_type_gff3.py')} {prefix}.tmp.gff3 {prefix}.pep.fasta -o {prefix}.gff3"
+        run_cmd(cmd, jobname=None, capture_output=False)
+        rm(f"{prefix}.tmp.gff3")
+        
+        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
+        #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.cds.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.cds.fasta"
+        
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        cmd = f"{os.path.join(sys.path[0], 'script/get_longest_transcript_gff3.py')} {prefix}.gff3 -o {prefix}.longest.gff3 --header 'CMD: {main_cmd}'"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
+        #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.longest.pep.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.longest.pep.fasta"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
+        #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.longest.cds.fasta"
+        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.longest.cds.fasta"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        intermediate_files = [#os.path.realpath(f'{prefix}.miniprot_output.gff3'),
+                            #os.path.realpath(f'{prefix}.transcript.gtf'),
+                            os.path.realpath(f'{prefix}.transcript.gff3'),
+                            os.path.realpath(f'{prefix}.transcript.genome.gff3'),
+                            *tuple(glob.glob(os.path.realpath(f'{prefix}.transcript.fasta')+'*'))]
+        if noclean:
+            pass
+        else:
+            for file in intermediate_files:
+                #print(file)
+                rm(file)
+                
+    elif ORFSoftware=="TD2":
+        cmd = f"TD2.LongOrfs --precise -t {prefix}.transcript.fasta -G {genetic_code} -O {output_dir} -@ {thread}"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+
+        infile = os.path.basename(f"{prefix}.transcript.fasta")
+        cmd = f"TD2.Predict --precise -t {infile} -G {genetic_code} -O ./"
+        if single_best_only == True:
+            pass
+        else:
+            #pass
+            cmd += ' --all-good'
+        
+        os.chdir(output_dir)
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        os.chdir('../')
+
+        cmd = f"{os.path.join(TransDecoder_PATH, 'util/cdna_alignment_orf_to_genome_orf.pl')} {prefix}.transcript.fasta.TD2.gff3 {prefix}.transcript.gff3 {prefix}.transcript.fasta > {prefix}.transcript.genome.gff3"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        cmd = f"{os.path.join(sys.path[0], 'script/split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
+        #subprocess.run(cmd, shell=True)
+        run_cmd(cmd, jobname=None, capture_output=False)
+        
+        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
+        #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.pep.fasta"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.tmp.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.pep.fasta"
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        cmd = f"{os.path.join(sys.path[0], 'script/add_type_gff3.py')} {prefix}.tmp.gff3 {prefix}.pep.fasta -o {prefix}.gff3"
+        run_cmd(cmd, jobname=None, capture_output=False)
+        rm(f"{prefix}.tmp.gff3")
+        
+        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
+        #--gff3 {prefix}.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.cds.fasta"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.cds.fasta"
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        cmd = f"{os.path.join(sys.path[0], 'script/get_longest_transcript_gff3.py')} {prefix}.gff3 -o {prefix}.longest.gff3 --header 'CMD: {main_cmd}'"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
+        #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType prot > {prefix}.longest.pep.fasta"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype prot -o {prefix}.longest.pep.fasta"
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gff3_file_to_proteins.pl')} \
+        #--gff3 {prefix}.longest.gff3 --fasta {genome_file} --genetic_code {NCBI2TransDecoder_genetic_code[genetic_code]} --seqType CDS > {prefix}.longest.cds.fasta"
+        #subprocess.run(cmd, shell=True, capture_output=True)
+        cmd = f"{os.path.join(sys.path[0], 'script/extract_sequence_from_gff3.py')} {prefix}.longest.gff3 {genome_file} -G {genetic_code} --seqtype CDS -o {prefix}.longest.cds.fasta"
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
+        
+        intermediate_files = [#os.path.realpath(f'{prefix}.miniprot_output.gff3'),
+                            #os.path.realpath(f'{prefix}.transcript.gtf'),
+                            os.path.realpath(f'{prefix}.transcript.gff3'),
+                            os.path.realpath(f'{prefix}.transcript.genome.gff3'),
+                            os.path.realpath(os.path.join(os.path.dirname(prefix),'longest_orfs.cds')),
+                            os.path.realpath(os.path.join(os.path.dirname(prefix),'longest_orfs.pep')),
+                            os.path.realpath(os.path.join(os.path.dirname(prefix),'longest_orfs.gff3')),
+                            os.path.realpath(os.path.join(os.path.dirname(prefix),'psauron_score.csv')),
+                            *tuple(glob.glob(os.path.realpath(f'{prefix}.transcript.fasta')+'*'))]
+                            
+        #print(intermediate_files)
+        
+        if noclean:
+            pass
+        else:
+            for file in intermediate_files:
+                rm(file)
