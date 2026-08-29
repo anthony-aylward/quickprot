@@ -5,6 +5,7 @@ channels:
 dependencies:
   - biopython
   - perl
+  - perl-uri
   - miniprot
   - td2
   - pip

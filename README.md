@@ -1,6 +1,6 @@
 ```sh
 conda create -n quickprot -c conda-forge -c bioconda \
-  biopython perl miniprot td2 pip
+  biopython perl perl-uri miniprot td2 pip
 conda activate quickprot
 pip install rare-quickprot
 ```

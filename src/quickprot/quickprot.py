@@ -500,11 +500,11 @@ the fused ORF will be split in subsequent analysis.""")
                 thread=thread, mask=mask, skip_align=skip_align, outs=args.outs, genetic_code=genetic_code, splice_model=splice_model, debug_info=debug_info)
 
     transcript_assembly(miniprot_output, identity, cover, prefix, query_file, preserve_the_starting_AA_number, align_number, in_stop_number)
-    if ORFSoftware=="TransDecoder":
-        cmd = f"{os.path.join(TransDecoder_PATH, 'util/gtf_to_alignment_gff3.pl')} {prefix}.transcript.gtf > {prefix}.transcript.gff3"
-        #subprocess.run(cmd, shell=True, capture_output=False)
-        run_cmd(cmd, jobname=None, capture_output=debug_info)
-        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gtf_genome_to_cdna_fasta.pl')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
+    
+    cmd = f"gtf_to_alignment_gff3.pl {prefix}.transcript.gtf > {prefix}.transcript.gff3"
+    #subprocess.run(cmd, shell=True, capture_output=False)
+    run_cmd(cmd, jobname=None, capture_output=debug_info)
+    #cmd = f"{os.path.join(TransDecoder_PATH, 'util/gtf_genome_to_cdna_fasta.pl')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
     cmd = f"{os.path.join(sys.path[0], 'gtf_genome_to_cdna_fasta.py')} {prefix}.transcript.gtf {genome_file} > {prefix}.transcript.fasta"
     #subprocess.run(cmd, shell=True, capture_output=True)
     run_cmd(cmd, jobname=None, capture_output=debug_info)
@@ -534,7 +534,7 @@ the fused ORF will be split in subsequent analysis.""")
         if res==False:
             run_cmd(cmd+" --no_refine_starts", jobname=None, capture_output=debug_info)
         
-        cmd = f"{os.path.join(TransDecoder_PATH, 'util/cdna_alignment_orf_to_genome_orf.pl')} {prefix}.transcript.fasta.transdecoder.gff3 {prefix}.transcript.gff3 {prefix}.transcript.fasta > {prefix}.transcript.genome.gff3"
+        cmd = f"cdna_alignment_orf_to_genome_orf.pl {prefix}.transcript.fasta.transdecoder.gff3 {prefix}.transcript.gff3 {prefix}.transcript.fasta > {prefix}.transcript.genome.gff3"
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
         
@@ -603,12 +603,12 @@ the fused ORF will be split in subsequent analysis.""")
         os.chdir(output_dir)
         #subprocess.run(cmd, shell=True, capture_output=True)
         run_cmd(cmd, jobname=None, capture_output=debug_info)
-        os.chdir('../')
 
-        #cmd = f"{os.path.join(TransDecoder_PATH, 'util/cdna_alignment_orf_to_genome_orf.pl')} {prefix}.transcript.fasta.TD2.gff3 {prefix}.transcript.gff3 {prefix}.transcript.fasta > {prefix}.transcript.genome.gff3"
+        cmd = f"cdna_alignment_orf_to_genome_orf.pl {prefix}.transcript.fasta.TD2.gff3 {prefix}.transcript.gff3 {prefix}.transcript.fasta > {prefix}.transcript.genome.gff3"
         #subprocess.run(cmd, shell=True, capture_output=True)
-        #run_cmd(cmd, jobname=None, capture_output=debug_info)
+        run_cmd(cmd, jobname=None, capture_output=debug_info)
         
+        os.chdir(os.path.dirname(output_dir))
         cmd = f"{os.path.join(sys.path[0], 'split_and_filter_gene_model.py')} -i {prefix}.transcript.genome.gff3 -o {prefix}.tmp.gff3 --overlap {overlap} --header 'CMD: {main_cmd}'"
         #subprocess.run(cmd, shell=True)
         run_cmd(cmd, jobname=None, capture_output=False)
