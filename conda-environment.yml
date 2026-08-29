@@ -6,5 +6,6 @@ dependencies:
   - biopython
   - perl
   - miniprot
-  - transdecoder
+  - td2
   - pip
+
