@@ -31,7 +31,7 @@ quickprot = "quickprot.quickprot:main"
 [tool.setuptools]
 package-dir = {quickprot="src/quickprot"}
 script-files = [
-    "src/quickprot/quckprot.py",
+    "src/quickprot/quickprot.py",
     "script/add_type_gff3.py",
     "extract_sequence_from_gff3.py",
     "filter_repeatPeps_from_gff3.py",
