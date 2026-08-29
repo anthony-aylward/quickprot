@@ -1,0 +1,11 @@
+name: quickprot-pytest
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - biopython
+  - perl
+  - perl-uri
+  - miniprot
+  - td2
+  - pytest

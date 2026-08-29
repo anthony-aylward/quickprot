@@ -114,6 +114,38 @@ Download the Singularity image [here](https://zenodo.org/records/21103261/files/
 singularity exec -B PATH -e quickprot.v1.9.0.sif quickprot.py -q protein.fasta -g genome.fasta
 ```
 
+## Test run
+
+If you clone this repository, you can perform a test run of QuickProt using `pytest`. This may be useful if you wish to contribute to development.
+
+First, it is convenient to set up a Conda environment for QuickProt testing:
+
+```sh
+conda create -n quickprot-pytest -c conda-forge -c bioconda \
+  biopython perl perl-uri miniprot td2 pytest
+conda activate quickprot-pytest
+```
+
+Alternatively, you can set up the same environment using the YAML file provided in the test directory:
+
+```sh
+git clone https://github.com/thecgs/quickprot.git
+conda env create -f quickprot/test/environment.yml
+conda activate quickprot-pytest
+```
+
+To perform the test run, simply clone and navigate to the repository, and run `pytest`.
+
+```sh
+git clone https://github.com/thecgs/quickprot.git
+cd quickprot
+pytest -s
+```
+
+The included test datasets in `test/data` are FASTA files containing:
+- A collection of *Saccharomyces* proteins downloaded from [UniProt](https://www.uniprot.org) (query proteins, Swiss-prot reviewed with tax ID 4930)
+- Chromosome 1 of *Saccharomyces cerevisiae* from [Ensembl](https://mart.ensembl.org/Saccharomyces_cerevisiae/Info/Index) (genome, softmasked).
+
 ## Cite QuickProt:
 
 If you use QuickProt, please cite:

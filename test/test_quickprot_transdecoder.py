@@ -1,0 +1,26 @@
+import pytest
+import shutil
+from subprocess import run
+
+@pytest.fixture(scope="session")
+def temp_dir(tmp_path_factory):
+    return tmp_path_factory.mktemp("temp")
+
+
+def test_quickprot_transdecoder_saccharomyces(
+    quickprot,
+    saccharomyces_proteins,
+    saccharomyces_cerevisiae_chr1,
+    temp_dir
+):
+    quickprot_cmd = (
+        quickprot,
+        "--query", saccharomyces_proteins,
+        "--genome", saccharomyces_cerevisiae_chr1,
+        "--prefix", temp_dir / "quickprot",
+        "--debug_info",
+        "-miniprot_PATH", shutil.which("miniprot")
+    )
+    print(quickprot_cmd)
+    run(quickprot_cmd, check=False)
+    assert True
