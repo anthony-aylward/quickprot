@@ -34,3 +34,22 @@ def saccharomyces_proteins():
 @pytest.fixture
 def saccharomyces_cerevisiae_chr1():
     return Path(__file__).parent / "data" / "Saccharomyces_cerevisiae.R64-1-1.dna_sm.chromosome.I.fa.gz"
+
+
+@pytest.fixture
+def output_file_suffixes():
+    return (
+        "cds.fasta",
+        "gff3",
+        "longest.cds.fasta",
+        "longest.gff3",
+        "longest.pep.fasta",
+        "pep.fasta",
+        "transcript.gtf",
+        "uniprotkb_reviewed_true_AND_taxonomy_id_4930_Saccharomyces.fasta.miniprot_output.outs_0.95.gff3"
+    )
+
+
+@pytest.fixture
+def output_reference_dir():
+    return Path(__file__).parent / "data" / "output"

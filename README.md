@@ -143,8 +143,10 @@ pytest -s
 ```
 
 The included test datasets in `test/data` are FASTA files containing:
-- A collection of *Saccharomyces* proteins downloaded from [UniProt](https://www.uniprot.org) (query proteins, Swiss-prot reviewed with tax ID 4930)
+- A collection of approximately 8,000 *Saccharomyces* protein sequences downloaded from [UniProt](https://www.uniprot.org) (query proteins, Swiss-prot reviewed with tax ID 4930)
 - Chromosome 1 of *Saccharomyces cerevisiae* from [Ensembl](https://mart.ensembl.org/Saccharomyces_cerevisiae/Info/Index) (genome, softmasked).
+
+When the test is executed, `pytest` will carry out annotation of the toy genome sequence with the toy protein query set and check for equality of the output files with a set of reference outputs found in `test/data/output` using MD5 checksums. If all test outputs are equal to the references, the test run will pass, if not, it will fail.
 
 ## Cite QuickProt:
 
