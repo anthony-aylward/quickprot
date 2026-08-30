@@ -5,7 +5,7 @@
 ## Update
 
 - 2026/04/28
-  1. Major Update: The version number has been updated to 1.9.0
+  1. Major Update: The version numbejr has been updated to 1.9.0
   2. **BUSCO results have improved significantly！！！**
   3. The runtime logic and results have been optimized, resulting in more comprehensive gene predictions.
   4.  Partially overlapping genes (<0.2 overlap) are now permitted.
@@ -145,7 +145,7 @@ If you include the option `--TD2`, `pytest` will carry out two test runs, one us
 pytest -s --TD2
 ```
 
-> Note: TD2's outputs are not as deterministic, so only the final GFF3 file will be checked
+> Note: TD2's outputs are not as deterministic, so only the miniprot output and transcript assembly will be checked
 
 ## Cite QuickProt:
 
