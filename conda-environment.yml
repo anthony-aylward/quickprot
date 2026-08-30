@@ -9,4 +9,6 @@ dependencies:
   - miniprot
   - td2
   - pip
+  - pip:
+    - rare-quickprot
 
