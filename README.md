@@ -121,14 +121,6 @@ If you clone this repository, you can perform a test run of QuickProt using `pyt
 First, it is convenient to set up a Conda environment for QuickProt testing:
 
 ```sh
-conda create -n quickprot-pytest -c conda-forge -c bioconda \
-  biopython perl perl-uri miniprot td2 pytest
-conda activate quickprot-pytest
-```
-
-Alternatively, you can set up the same environment using the YAML file provided in the test directory:
-
-```sh
 git clone https://github.com/thecgs/quickprot.git
 conda env create -f quickprot/test/environment.yml
 conda activate quickprot-pytest
@@ -137,7 +129,6 @@ conda activate quickprot-pytest
 To perform the test run, simply clone and navigate to the repository, and run `pytest`.
 
 ```sh
-git clone https://github.com/thecgs/quickprot.git
 cd quickprot
 pytest -s
 ```

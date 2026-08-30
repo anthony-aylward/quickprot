@@ -51,5 +51,10 @@ def output_file_suffixes():
 
 
 @pytest.fixture
-def output_reference_dir():
-    return Path(__file__).parent / "data" / "output"
+def output_reference_dir_transdecoder():
+    return Path(__file__).parent / "data" / "output_transdecoder"
+
+
+@pytest.fixture
+def output_reference_dir_td2():
+    return Path(__file__).parent / "data" / "output_td2"
