@@ -15,7 +15,7 @@ def pytest_collection_modifyitems(config, items):
     if config.getoption("--TD2"):
         # --TD2 given in cli: do not skip TD2 tests
         return
-    skip_td2 = pytest.mark.skip(reason="need --runslow option to run")
+    skip_td2 = pytest.mark.skip(reason="need --TD2 option to run")
     for item in items:
         if "td2" in item.keywords:
             item.add_marker(skip_td2)

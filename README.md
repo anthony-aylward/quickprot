@@ -148,6 +148,14 @@ The included test datasets in `test/data` are FASTA files containing:
 
 When the test is executed, `pytest` will carry out annotation of the toy genome sequence with the toy protein query set and check for equality of the output files with a set of reference outputs found in `test/data/output` using MD5 checksums. If all test outputs are equal to the references, the test run will pass, if not, it will fail.
 
+If you include the option `--TD2`, `pytest` will carry out two test runs, one using TransDecoder and a second one using TD2.
+
+```sh
+pytest -s --TD2
+```
+
+> Note: TD2's outputs are not as deterministic, so only the final GFF3 file will be checked
+
 ## Cite QuickProt:
 
 If you use QuickProt, please cite:
