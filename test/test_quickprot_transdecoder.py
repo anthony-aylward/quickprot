@@ -21,9 +21,8 @@ def test_quickprot_transdecoder_saccharomyces(
         "--query", saccharomyces_proteins,
         "--genome", saccharomyces_cerevisiae_chr1,
         "--prefix", temp_dir / "quickprot",
-        "--debug_info",
-        "-miniprot_PATH", shutil.which("miniprot")
-    )
+        "--debug_info"
+    ) + ("-miniprot_PATH", shutil.which("miniprot")) * bool(shutil.which("miniprot"))
     print(quickprot_cmd)
     run(quickprot_cmd, check=False)
     for suffix in output_file_suffixes:
