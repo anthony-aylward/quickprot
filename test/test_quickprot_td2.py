@@ -63,8 +63,8 @@ def test_quickprot_td2_saccharomyces(
                         assert all(
                             (
                                 feature in ("gene", "mRNA", "exon", "CDS"),
-                                int(start) > -1,
-                                int(end) > -1,
+                                int(start) >= 0,
+                                int(end) >= 0,
                                 strand in ("+", "-", ".", "?"),
                                 phase in ("0", "1", "2", ".")
                             )
