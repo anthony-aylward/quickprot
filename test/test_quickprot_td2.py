@@ -56,6 +56,7 @@ def test_quickprot_td2_saccharomyces(
             except ValueError:
                 assert False
         elif "gff3" in suffix:
+            features = set()
             with open(output_file, "rt") as handle:
                 for line in handle:
                     if line.strip() and not line.startswith("#"):
@@ -69,3 +70,5 @@ def test_quickprot_td2_saccharomyces(
                                 phase in ("0", "1", "2", ".")
                             )
                         )
+                        features.add(feature)
+            assert {"gene", "mRNA", "CDS"} <= features
