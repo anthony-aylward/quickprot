@@ -1,5 +1,6 @@
 import pytest
 import shutil
+from Bio import SeqIO
 from hashlib import md5
 from subprocess import run
 
@@ -29,22 +30,42 @@ def quickprot_cmd_td2(
 @pytest.mark.td2
 def test_quickprot_td2_saccharomyces(
     quickprot_cmd_td2,
+    output_file_suffixes_transcript,
+    output_file_suffixes_protein,
     output_reference_dir_td2,
     temp_dir
 ):
     print(quickprot_cmd_td2)
     run(quickprot_cmd_td2, check=True)
-    for suffix in (
-        "transcript.gtf",
-        "uniprotkb_reviewed_true_AND_taxonomy_id_4930_Saccharomyces.fasta.miniprot_output.outs_0.95.gff3"
-    ):
-        test_file = f'{temp_dir / "quickprot"}.{suffix}'
-        reference_file = f'{output_reference_dir_td2 / "quickprot"}.{suffix}'
+    for suffix in output_file_suffixes_transcript:
+        test_file = temp_dir / f'{"quickprot"}.{suffix}'
+        reference_file = output_reference_dir_td2 / f'{"quickprot"}.{suffix}'
         print(test_file, reference_file)
         with open(test_file, "rb") as tf, open(reference_file, "rb") as rf:
-            if suffix.endswith("gff3"):
-                tf.readline()
-                rf.readline()
             tf_hash, rf_hash = md5(tf.read()).hexdigest(), md5(rf.read()).hexdigest()
             print(tf_hash, rf_hash, "equal" if tf_hash == rf_hash else "unequal")
             assert tf_hash == rf_hash
+    for suffix in output_file_suffixes_protein:
+        output_file = temp_dir / f'{"quickprot"}.{suffix}'
+        print(output_file)
+        assert output_file.is_file() and output_file.stat().st_size > 0
+        if "fasta" in suffix:
+            try:
+                *_,  last_record = SeqIO.parse(output_file, "fasta")
+                print(last_record)
+            except ValueError:
+                assert False
+        elif "gff3" in suffix:
+            with open(output_file, "rt") as handle:
+                for line in handle:
+                    if line.strip() and not line.startswith("#"):
+                        _, _, feature, start, end, _, strand, phase, _ = line.split("\t")
+                        assert all(
+                            (
+                                feature in ("gene", "mRNA", "exon", "CDS"),
+                                int(start) > -1,
+                                int(end) > -1,
+                                strand in ("+", "-", ".", "?"),
+                                phase in ("0", "1", "2", ".")
+                            )
+                        )
