@@ -1,0 +1,14 @@
+name: quickprot-pytest
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - python==3.12.14
+  - biopython==1.88
+  - perl==5.32.1
+  - perl-uri==5.12
+  - miniprot==0.18
+  - psauron==1.1.3
+  - pytorch-cpu==2.13.0
+  - td2==1.1.0
+  - pytest==9.1.1

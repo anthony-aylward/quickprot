@@ -1,0 +1,472 @@
+#CMD: /Users/anthonyaylward/Documents/rareflora/quickprot/quickprot.py --query /Users/anthonyaylward/Documents/rareflora/quickprot/test/data/uniprotkb_reviewed_true_AND_taxonomy_id_4930_Saccharomyces.fasta.gz --genome /Users/anthonyaylward/Documents/rareflora/quickprot/test/data/Saccharomyces_cerevisiae.R64-1-1.dna_sm.chromosome.I.fa.gz --debug_info -miniprot_PATH /Users/anthonyaylward/miniconda3/envs/quickprot/bin/miniprot
+
+I	quickprot	gene	1807	2169	.	-	.	ID=QUKPGENE1;
+I	quickprot	mRNA	1807	2169	42.35	-	.	ID=QUKPMRNA1.p1;Parent=QUKPGENE1;Type=complete;Prot_Len=120;
+I	quickprot	exon	1807	2169	.	-	.	ID=QUKPMRNA1.p1.exon1;Parent=QUKPMRNA1.p1;
+I	quickprot	CDS	1807	2169	.	-	0	ID=QUKPMRNA1.p1.cds1;Parent=QUKPMRNA1.p1;
+
+I	quickprot	gene	7235	9016	.	-	.	ID=QUKPGENE2;
+I	quickprot	mRNA	7235	9016	119.46	-	.	ID=QUKPMRNA2.p1;Parent=QUKPGENE2;Type=complete;Prot_Len=593;
+I	quickprot	exon	7235	9016	.	-	.	ID=QUKPMRNA2.p1.exon1;Parent=QUKPMRNA2.p1;
+I	quickprot	CDS	7235	9016	.	-	0	ID=QUKPMRNA2.p1.cds1;Parent=QUKPMRNA2.p1;
+
+I	quickprot	gene	10091	10399	.	+	.	ID=QUKPGENE3;
+I	quickprot	mRNA	10091	10399	7.02	+	.	ID=QUKPMRNA3.p1;Parent=QUKPGENE3;Type=complete;Prot_Len=102;
+I	quickprot	exon	10091	10399	.	+	.	ID=QUKPMRNA3.p1.exon1;Parent=QUKPMRNA3.p1;
+I	quickprot	CDS	10091	10399	.	+	0	ID=QUKPMRNA3.p1.cds1;Parent=QUKPMRNA3.p1;
+
+I	quickprot	gene	11565	11951	.	-	.	ID=QUKPGENE4;
+I	quickprot	mRNA	11565	11951	48.73	-	.	ID=QUKPMRNA4.p1;Parent=QUKPGENE4;Type=complete;Prot_Len=128;
+I	quickprot	exon	11565	11951	.	-	.	ID=QUKPMRNA4.p1.exon1;Parent=QUKPMRNA4.p1;
+I	quickprot	CDS	11565	11951	.	-	0	ID=QUKPMRNA4.p1.cds1;Parent=QUKPMRNA4.p1;
+
+I	quickprot	gene	12046	12426	.	+	.	ID=QUKPGENE5;
+I	quickprot	mRNA	12046	12426	63.82	+	.	ID=QUKPMRNA5.p1;Parent=QUKPGENE5;Type=complete;Prot_Len=126;
+I	quickprot	exon	12046	12426	.	+	.	ID=QUKPMRNA5.p1.exon1;Parent=QUKPMRNA5.p1;
+I	quickprot	CDS	12046	12426	.	+	0	ID=QUKPMRNA5.p1.cds1;Parent=QUKPMRNA5.p1;
+
+I	quickprot	gene	13363	13743	.	-	.	ID=QUKPGENE6;
+I	quickprot	mRNA	13363	13743	38.75	-	.	ID=QUKPMRNA6.p1;Parent=QUKPGENE6;Type=complete;Prot_Len=126;
+I	quickprot	exon	13363	13743	.	-	.	ID=QUKPMRNA6.p1.exon1;Parent=QUKPMRNA6.p1;
+I	quickprot	CDS	13363	13743	.	-	0	ID=QUKPMRNA6.p1.cds1;Parent=QUKPMRNA6.p1;
+
+I	quickprot	gene	24000	27968	.	-	.	ID=QUKPGENE7;
+I	quickprot	mRNA	24000	27968	590.11	-	.	ID=QUKPMRNA7.p1;Parent=QUKPGENE7;Type=complete;Prot_Len=1098;
+I	quickprot	exon	27045	27968	.	-	.	ID=QUKPMRNA7.p1.exon1;Parent=QUKPMRNA7.p1;
+I	quickprot	CDS	27045	27968	.	-	0	ID=QUKPMRNA7.p1.cds1;Parent=QUKPMRNA7.p1;
+I	quickprot	exon	24000	26372	.	-	.	ID=QUKPMRNA7.p1.exon2;Parent=QUKPMRNA7.p1;
+I	quickprot	CDS	24000	26372	.	-	0	ID=QUKPMRNA7.p1.cds2;Parent=QUKPMRNA7.p1;
+
+I	quickprot	gene	31570	32940	.	+	.	ID=QUKPGENE8;
+I	quickprot	mRNA	31570	32940	134.23	+	.	ID=QUKPMRNA8.p1;Parent=QUKPGENE8;Type=5prime_partial;Prot_Len=456;
+I	quickprot	exon	31570	32940	.	+	.	ID=QUKPMRNA8.p1.exon1;Parent=QUKPMRNA8.p1;
+I	quickprot	CDS	31570	32940	.	+	0	ID=QUKPMRNA8.p1.cds1;Parent=QUKPMRNA8.p1;
+
+I	quickprot	gene	33448	34701	.	+	.	ID=QUKPGENE9;
+I	quickprot	mRNA	33448	34701	117.93	+	.	ID=QUKPMRNA9.p1;Parent=QUKPGENE9;Type=complete;Prot_Len=417;
+I	quickprot	exon	33448	34701	.	+	.	ID=QUKPMRNA9.p1.exon1;Parent=QUKPMRNA9.p1;
+I	quickprot	CDS	33448	34701	.	+	0	ID=QUKPMRNA9.p1.cds1;Parent=QUKPMRNA9.p1;
+
+I	quickprot	gene	35155	36303	.	+	.	ID=QUKPGENE10;
+I	quickprot	mRNA	35155	36303	106.77	+	.	ID=QUKPMRNA10.p1;Parent=QUKPGENE10;Type=complete;Prot_Len=382;
+I	quickprot	exon	35155	36303	.	+	.	ID=QUKPMRNA10.p1.exon1;Parent=QUKPMRNA10.p1;
+I	quickprot	CDS	35155	36303	.	+	0	ID=QUKPMRNA10.p1.cds1;Parent=QUKPMRNA10.p1;
+
+I	quickprot	gene	36509	37147	.	+	.	ID=QUKPGENE11;
+I	quickprot	mRNA	36509	37147	65.07	+	.	ID=QUKPMRNA11.p2;Parent=QUKPGENE11;Type=complete;Prot_Len=212;
+I	quickprot	exon	36509	37147	.	+	.	ID=QUKPMRNA11.p2.exon1;Parent=QUKPMRNA11.p2;
+I	quickprot	CDS	36509	37147	.	+	0	ID=QUKPMRNA11.p2.cds1;Parent=QUKPMRNA11.p2;
+
+I	quickprot	gene	37464	38972	.	+	.	ID=QUKPGENE12;
+I	quickprot	mRNA	37464	38972	98.79	+	.	ID=QUKPMRNA12.p1;Parent=QUKPGENE12;Type=complete;Prot_Len=502;
+I	quickprot	exon	37464	38972	.	+	.	ID=QUKPMRNA12.p1.exon1;Parent=QUKPMRNA12.p1;
+I	quickprot	CDS	37464	38972	.	+	0	ID=QUKPMRNA12.p1.cds1;Parent=QUKPMRNA12.p1;
+
+I	quickprot	gene	39259	41901	.	+	.	ID=QUKPGENE13;
+I	quickprot	mRNA	39259	41901	167.31	+	.	ID=QUKPMRNA13.p1;Parent=QUKPGENE13;Type=complete;Prot_Len=880;
+I	quickprot	exon	39259	41901	.	+	.	ID=QUKPMRNA13.p1.exon1;Parent=QUKPMRNA13.p1;
+I	quickprot	CDS	39259	41901	.	+	0	ID=QUKPMRNA13.p1.cds1;Parent=QUKPMRNA13.p1;
+
+I	quickprot	gene	42177	42719	.	+	.	ID=QUKPGENE14;
+I	quickprot	mRNA	42177	42719	38.04	+	.	ID=QUKPMRNA14.p1;Parent=QUKPGENE14;Type=complete;Prot_Len=180;
+I	quickprot	exon	42177	42719	.	+	.	ID=QUKPMRNA14.p1.exon1;Parent=QUKPMRNA14.p1;
+I	quickprot	CDS	42177	42719	.	+	0	ID=QUKPMRNA14.p1.cds1;Parent=QUKPMRNA14.p1;
+
+I	quickprot	gene	42881	45022	.	-	.	ID=QUKPGENE15;
+I	quickprot	mRNA	42881	45022	216.88	-	.	ID=QUKPMRNA15.p1;Parent=QUKPGENE15;Type=complete;Prot_Len=713;
+I	quickprot	exon	42881	45022	.	-	.	ID=QUKPMRNA15.p1.exon1;Parent=QUKPMRNA15.p1;
+I	quickprot	CDS	42881	45022	.	-	0	ID=QUKPMRNA15.p1.cds1;Parent=QUKPMRNA15.p1;
+
+I	quickprot	gene	45899	48250	.	+	.	ID=QUKPGENE16;
+I	quickprot	mRNA	45899	48250	186.19	+	.	ID=QUKPMRNA16.p1;Parent=QUKPGENE16;Type=complete;Prot_Len=783;
+I	quickprot	exon	45899	48250	.	+	.	ID=QUKPMRNA16.p1.exon1;Parent=QUKPMRNA16.p1;
+I	quickprot	CDS	45899	48250	.	+	0	ID=QUKPMRNA16.p1.cds1;Parent=QUKPMRNA16.p1;
+
+I	quickprot	gene	48564	51707	.	+	.	ID=QUKPGENE17;
+I	quickprot	mRNA	48564	51707	191.64	+	.	ID=QUKPMRNA17.p1;Parent=QUKPGENE17;Type=complete;Prot_Len=1047;
+I	quickprot	exon	48564	51707	.	+	.	ID=QUKPMRNA17.p1.exon1;Parent=QUKPMRNA17.p1;
+I	quickprot	CDS	48564	51707	.	+	0	ID=QUKPMRNA17.p1.cds1;Parent=QUKPMRNA17.p1;
+
+I	quickprot	gene	51855	52595	.	-	.	ID=QUKPGENE18;
+I	quickprot	mRNA	51855	52595	67.13	-	.	ID=QUKPMRNA18.p1;Parent=QUKPGENE18;Type=complete;Prot_Len=246;
+I	quickprot	exon	51855	52595	.	-	.	ID=QUKPMRNA18.p1.exon1;Parent=QUKPMRNA18.p1;
+I	quickprot	CDS	51855	52595	.	-	0	ID=QUKPMRNA18.p1.cds1;Parent=QUKPMRNA18.p1;
+
+I	quickprot	gene	52801	54789	.	-	.	ID=QUKPGENE19;
+I	quickprot	mRNA	52801	54789	134.64	-	.	ID=QUKPMRNA19.p1;Parent=QUKPGENE19;Type=complete;Prot_Len=662;
+I	quickprot	exon	52801	54789	.	-	.	ID=QUKPMRNA19.p1.exon1;Parent=QUKPMRNA19.p1;
+I	quickprot	CDS	52801	54789	.	-	0	ID=QUKPMRNA19.p1.cds1;Parent=QUKPMRNA19.p1;
+
+I	quickprot	gene	54989	56857	.	-	.	ID=QUKPGENE20;
+I	quickprot	mRNA	54989	56857	164.66	-	.	ID=QUKPMRNA20.p1;Parent=QUKPGENE20;Type=complete;Prot_Len=622;
+I	quickprot	exon	54989	56857	.	-	.	ID=QUKPMRNA20.p1.exon1;Parent=QUKPMRNA20.p1;
+I	quickprot	CDS	54989	56857	.	-	0	ID=QUKPMRNA20.p1.cds1;Parent=QUKPMRNA20.p1;
+
+I	quickprot	gene	57029	57385	.	-	.	ID=QUKPGENE21;
+I	quickprot	mRNA	57029	57385	35.65	-	.	ID=QUKPMRNA21.p1;Parent=QUKPGENE21;Type=complete;Prot_Len=118;
+I	quickprot	exon	57029	57385	.	-	.	ID=QUKPMRNA21.p1.exon1;Parent=QUKPMRNA21.p1;
+I	quickprot	CDS	57029	57385	.	-	0	ID=QUKPMRNA21.p1.cds1;Parent=QUKPMRNA21.p1;
+
+I	quickprot	gene	57488	57850	.	+	.	ID=QUKPGENE22;
+I	quickprot	mRNA	57518	57850	24.3	+	.	ID=QUKPMRNA22.p2;Parent=QUKPGENE22;Type=complete;Prot_Len=110;
+I	quickprot	exon	57518	57850	.	+	.	ID=QUKPMRNA22.p2.exon1;Parent=QUKPMRNA22.p2;
+I	quickprot	CDS	57518	57850	.	+	0	ID=QUKPMRNA22.p2.cds1;Parent=QUKPMRNA22.p2;
+
+I	quickprot	gene	57950	58462	.	-	.	ID=QUKPGENE23;
+I	quickprot	mRNA	57950	58462	33.65	-	.	ID=QUKPMRNA23.p1;Parent=QUKPGENE23;Type=complete;Prot_Len=170;
+I	quickprot	exon	57950	58462	.	-	.	ID=QUKPMRNA23.p1.exon1;Parent=QUKPMRNA23.p1;
+I	quickprot	CDS	57950	58462	.	-	0	ID=QUKPMRNA23.p1.cds1;Parent=QUKPMRNA23.p1;
+
+I	quickprot	gene	58695	61052	.	-	.	ID=QUKPGENE24;
+I	quickprot	mRNA	58695	61052	200.98	-	.	ID=QUKPMRNA24.p1;Parent=QUKPGENE24;Type=complete;Prot_Len=785;
+I	quickprot	exon	58695	61052	.	-	.	ID=QUKPMRNA24.p1.exon1;Parent=QUKPMRNA24.p1;
+I	quickprot	CDS	58695	61052	.	-	0	ID=QUKPMRNA24.p1.cds1;Parent=QUKPMRNA24.p1;
+
+I	quickprot	gene	61316	62563	.	+	.	ID=QUKPGENE25;
+I	quickprot	mRNA	61316	62563	98.64	+	.	ID=QUKPMRNA25.p1;Parent=QUKPGENE25;Type=complete;Prot_Len=415;
+I	quickprot	exon	61316	62563	.	+	.	ID=QUKPMRNA25.p1.exon1;Parent=QUKPMRNA25.p1;
+I	quickprot	CDS	61316	62563	.	+	0	ID=QUKPMRNA25.p1.cds1;Parent=QUKPMRNA25.p1;
+
+I	quickprot	gene	62840	65404	.	+	.	ID=QUKPGENE26;
+I	quickprot	mRNA	62840	65404	195.97	+	.	ID=QUKPMRNA26.p1;Parent=QUKPGENE26;Type=complete;Prot_Len=854;
+I	quickprot	exon	62840	65404	.	+	.	ID=QUKPMRNA26.p1.exon1;Parent=QUKPMRNA26.p1;
+I	quickprot	CDS	62840	65404	.	+	0	ID=QUKPMRNA26.p1.cds1;Parent=QUKPMRNA26.p1;
+
+I	quickprot	gene	65778	67520	.	-	.	ID=QUKPGENE27;
+I	quickprot	mRNA	65778	67520	140.52	-	.	ID=QUKPMRNA27.p1;Parent=QUKPGENE27;Type=complete;Prot_Len=580;
+I	quickprot	exon	65778	67520	.	-	.	ID=QUKPMRNA27.p1.exon1;Parent=QUKPMRNA27.p1;
+I	quickprot	CDS	65778	67520	.	-	0	ID=QUKPMRNA27.p1.cds1;Parent=QUKPMRNA27.p1;
+
+I	quickprot	gene	68716	69525	.	-	.	ID=QUKPGENE28;
+I	quickprot	mRNA	68716	69525	76.82	-	.	ID=QUKPMRNA28.p1;Parent=QUKPGENE28;Type=complete;Prot_Len=269;
+I	quickprot	exon	68716	69525	.	-	.	ID=QUKPMRNA28.p1.exon1;Parent=QUKPMRNA28.p1;
+I	quickprot	CDS	68716	69525	.	-	0	ID=QUKPMRNA28.p1.cds1;Parent=QUKPMRNA28.p1;
+
+I	quickprot	gene	71786	73288	.	+	.	ID=QUKPGENE29;
+I	quickprot	mRNA	71786	73288	213.92	+	.	ID=QUKPMRNA29.p1;Parent=QUKPGENE29;Type=complete;Prot_Len=500;
+I	quickprot	exon	71786	73288	.	+	.	ID=QUKPMRNA29.p1.exon1;Parent=QUKPMRNA29.p1;
+I	quickprot	CDS	71786	73288	.	+	0	ID=QUKPMRNA29.p1.cds1;Parent=QUKPMRNA29.p1;
+
+I	quickprot	gene	74020	74823	.	+	.	ID=QUKPGENE30;
+I	quickprot	mRNA	74020	74823	49.4	+	.	ID=QUKPMRNA30.p1;Parent=QUKPGENE30;Type=complete;Prot_Len=267;
+I	quickprot	exon	74020	74823	.	+	.	ID=QUKPMRNA30.p1.exon1;Parent=QUKPMRNA30.p1;
+I	quickprot	CDS	74020	74823	.	+	0	ID=QUKPMRNA30.p1.cds1;Parent=QUKPMRNA30.p1;
+
+I	quickprot	gene	75043	76152	.	-	.	ID=QUKPGENE31;
+I	quickprot	mRNA	75043	76152	110.97	-	.	ID=QUKPMRNA31.p1;Parent=QUKPGENE31;Type=complete;Prot_Len=369;
+I	quickprot	exon	75043	76152	.	-	.	ID=QUKPMRNA31.p1.exon1;Parent=QUKPMRNA31.p1;
+I	quickprot	CDS	75043	76152	.	-	0	ID=QUKPMRNA31.p1.cds1;Parent=QUKPMRNA31.p1;
+
+I	quickprot	gene	76427	79435	.	+	.	ID=QUKPGENE32;
+I	quickprot	mRNA	76427	79435	409.9	+	.	ID=QUKPMRNA32.p1;Parent=QUKPGENE32;Type=complete;Prot_Len=1002;
+I	quickprot	exon	76427	79435	.	+	.	ID=QUKPMRNA32.p1.exon1;Parent=QUKPMRNA32.p1;
+I	quickprot	CDS	76427	79435	.	+	0	ID=QUKPMRNA32.p1.cds1;Parent=QUKPMRNA32.p1;
+
+I	quickprot	gene	79718	80587	.	+	.	ID=QUKPGENE33;
+I	quickprot	mRNA	79718	80587	79.11	+	.	ID=QUKPMRNA33.p1;Parent=QUKPGENE33;Type=complete;Prot_Len=289;
+I	quickprot	exon	79718	80587	.	+	.	ID=QUKPMRNA33.p1.exon1;Parent=QUKPMRNA33.p1;
+I	quickprot	CDS	79718	80587	.	+	0	ID=QUKPMRNA33.p1.cds1;Parent=QUKPMRNA33.p1;
+
+I	quickprot	gene	80710	81951	.	-	.	ID=QUKPGENE34;
+I	quickprot	mRNA	80710	81951	86.03	-	.	ID=QUKPMRNA34.p1;Parent=QUKPGENE34;Type=complete;Prot_Len=413;
+I	quickprot	exon	80710	81951	.	-	.	ID=QUKPMRNA34.p1.exon1;Parent=QUKPMRNA34.p1;
+I	quickprot	CDS	80710	81951	.	-	0	ID=QUKPMRNA34.p1.cds1;Parent=QUKPMRNA34.p1;
+
+I	quickprot	gene	82706	83227	.	+	.	ID=QUKPGENE35;
+I	quickprot	mRNA	82706	83227	33.16	+	.	ID=QUKPMRNA35.p1;Parent=QUKPGENE35;Type=complete;Prot_Len=173;
+I	quickprot	exon	82706	83227	.	+	.	ID=QUKPMRNA35.p1.exon1;Parent=QUKPMRNA35.p1;
+I	quickprot	CDS	82706	83227	.	+	0	ID=QUKPMRNA35.p1.cds1;Parent=QUKPMRNA35.p1;
+
+I	quickprot	gene	83335	84474	.	-	.	ID=QUKPGENE36;
+I	quickprot	mRNA	83335	84474	106.68	-	.	ID=QUKPMRNA36.p1;Parent=QUKPGENE36;Type=complete;Prot_Len=379;
+I	quickprot	exon	83335	84474	.	-	.	ID=QUKPMRNA36.p1.exon1;Parent=QUKPMRNA36.p1;
+I	quickprot	CDS	83335	84474	.	-	0	ID=QUKPMRNA36.p1.cds1;Parent=QUKPMRNA36.p1;
+
+I	quickprot	gene	84749	87031	.	-	.	ID=QUKPGENE37;
+I	quickprot	mRNA	84749	87031	174.12	-	.	ID=QUKPMRNA37.p1;Parent=QUKPGENE37;Type=complete;Prot_Len=760;
+I	quickprot	exon	84749	87031	.	-	.	ID=QUKPMRNA37.p1.exon1;Parent=QUKPMRNA37.p1;
+I	quickprot	CDS	84749	87031	.	-	0	ID=QUKPMRNA37.p1.cds1;Parent=QUKPMRNA37.p1;
+
+I	quickprot	gene	87286	87752	.	+	.	ID=QUKPGENE38;
+I	quickprot	mRNA	87286	87752	29.49	+	.	ID=QUKPMRNA38.p1;Parent=QUKPGENE38;Type=complete;Prot_Len=117;
+I	quickprot	exon	87286	87387	.	+	.	ID=QUKPMRNA38.p1.exon1;Parent=QUKPMRNA38.p1;
+I	quickprot	CDS	87286	87387	.	+	0	ID=QUKPMRNA38.p1.cds1;Parent=QUKPMRNA38.p1;
+I	quickprot	exon	87501	87752	.	+	.	ID=QUKPMRNA38.p1.exon2;Parent=QUKPMRNA38.p1;
+I	quickprot	CDS	87501	87752	.	+	0	ID=QUKPMRNA38.p1.cds2;Parent=QUKPMRNA38.p1;
+
+I	quickprot	gene	87855	92270	.	-	.	ID=QUKPGENE39;
+I	quickprot	mRNA	87855	92270	298.35	-	.	ID=QUKPMRNA39.p1;Parent=QUKPGENE39;Type=complete;Prot_Len=1471;
+I	quickprot	exon	87855	92270	.	-	.	ID=QUKPMRNA39.p1.exon1;Parent=QUKPMRNA39.p1;
+I	quickprot	CDS	87855	92270	.	-	0	ID=QUKPMRNA39.p1.cds1;Parent=QUKPMRNA39.p1;
+
+I	quickprot	gene	92900	94486	.	+	.	ID=QUKPGENE40;
+I	quickprot	mRNA	92900	94486	128.23	+	.	ID=QUKPMRNA40.p1;Parent=QUKPGENE40;Type=complete;Prot_Len=528;
+I	quickprot	exon	92900	94486	.	+	.	ID=QUKPMRNA40.p1.exon1;Parent=QUKPMRNA40.p1;
+I	quickprot	CDS	92900	94486	.	+	0	ID=QUKPMRNA40.p1.cds1;Parent=QUKPMRNA40.p1;
+
+I	quickprot	gene	94687	95472	.	+	.	ID=QUKPGENE41;
+I	quickprot	mRNA	94687	95472	45.01	+	.	ID=QUKPMRNA41.p1;Parent=QUKPGENE41;Type=complete;Prot_Len=261;
+I	quickprot	exon	94687	95472	.	+	.	ID=QUKPMRNA41.p1.exon1;Parent=QUKPMRNA41.p1;
+I	quickprot	CDS	94687	95472	.	+	0	ID=QUKPMRNA41.p1.cds1;Parent=QUKPMRNA41.p1;
+
+I	quickprot	gene	95630	99697	.	-	.	ID=QUKPGENE42;
+I	quickprot	mRNA	95630	99697	314.15	-	.	ID=QUKPMRNA42.p1;Parent=QUKPGENE42;Type=complete;Prot_Len=1355;
+I	quickprot	exon	95630	99697	.	-	.	ID=QUKPMRNA42.p1.exon1;Parent=QUKPMRNA42.p1;
+I	quickprot	CDS	95630	99697	.	-	0	ID=QUKPMRNA42.p1.cds1;Parent=QUKPMRNA42.p1;
+
+I	quickprot	gene	100225	101145	.	-	.	ID=QUKPGENE43;
+I	quickprot	mRNA	100225	101145	81.33	-	.	ID=QUKPMRNA43.p1;Parent=QUKPGENE43;Type=complete;Prot_Len=306;
+I	quickprot	exon	100225	101145	.	-	.	ID=QUKPMRNA43.p1.exon1;Parent=QUKPMRNA43.p1;
+I	quickprot	CDS	100225	101145	.	-	0	ID=QUKPMRNA43.p1.cds1;Parent=QUKPMRNA43.p1;
+
+I	quickprot	gene	101565	105872	.	-	.	ID=QUKPGENE44;
+I	quickprot	mRNA	101565	105872	280.36	-	.	ID=QUKPMRNA44.p1;Parent=QUKPGENE44;Type=complete;Prot_Len=1435;
+I	quickprot	exon	101565	105872	.	-	.	ID=QUKPMRNA44.p1.exon1;Parent=QUKPMRNA44.p1;
+I	quickprot	CDS	101565	105872	.	-	0	ID=QUKPMRNA44.p1.cds1;Parent=QUKPMRNA44.p1;
+
+I	quickprot	gene	106272	108551	.	-	.	ID=QUKPGENE45;
+I	quickprot	mRNA	106272	108551	181.63	-	.	ID=QUKPMRNA45.p1;Parent=QUKPGENE45;Type=complete;Prot_Len=759;
+I	quickprot	exon	106272	108551	.	-	.	ID=QUKPMRNA45.p1.exon1;Parent=QUKPMRNA45.p1;
+I	quickprot	CDS	106272	108551	.	-	0	ID=QUKPMRNA45.p1.cds1;Parent=QUKPMRNA45.p1;
+
+I	quickprot	gene	108877	110430	.	-	.	ID=QUKPGENE46;
+I	quickprot	mRNA	108877	110430	106.65	-	.	ID=QUKPMRNA46.p1;Parent=QUKPGENE46;Type=complete;Prot_Len=517;
+I	quickprot	exon	108877	110430	.	-	.	ID=QUKPMRNA46.p1.exon1;Parent=QUKPMRNA46.p1;
+I	quickprot	CDS	108877	110430	.	-	0	ID=QUKPMRNA46.p1.cds1;Parent=QUKPMRNA46.p1;
+
+I	quickprot	gene	110846	113359	.	-	.	ID=QUKPGENE47;
+I	quickprot	mRNA	110846	113359	234.7	-	.	ID=QUKPMRNA47.p1;Parent=QUKPGENE47;Type=complete;Prot_Len=837;
+I	quickprot	exon	110846	113359	.	-	.	ID=QUKPMRNA47.p1.exon1;Parent=QUKPMRNA47.p1;
+I	quickprot	CDS	110846	113359	.	-	0	ID=QUKPMRNA47.p1.cds1;Parent=QUKPMRNA47.p1;
+
+I	quickprot	gene	113614	114615	.	-	.	ID=QUKPGENE48;
+I	quickprot	mRNA	113614	114615	71.62	-	.	ID=QUKPMRNA48.p1;Parent=QUKPGENE48;Type=complete;Prot_Len=333;
+I	quickprot	exon	113614	114615	.	-	.	ID=QUKPMRNA48.p1.exon1;Parent=QUKPMRNA48.p1;
+I	quickprot	CDS	113614	114615	.	-	0	ID=QUKPMRNA48.p1.cds1;Parent=QUKPMRNA48.p1;
+
+I	quickprot	gene	114919	118314	.	+	.	ID=QUKPGENE49;
+I	quickprot	mRNA	114919	118314	324.63	+	.	ID=QUKPMRNA49.p1;Parent=QUKPGENE49;Type=complete;Prot_Len=1131;
+I	quickprot	exon	114919	118314	.	+	.	ID=QUKPMRNA49.p1.exon1;Parent=QUKPMRNA49.p1;
+I	quickprot	CDS	114919	118314	.	+	0	ID=QUKPMRNA49.p1.cds1;Parent=QUKPMRNA49.p1;
+
+I	quickprot	gene	118564	119541	.	-	.	ID=QUKPGENE50;
+I	quickprot	mRNA	118564	119541	73.23	-	.	ID=QUKPMRNA50.p1;Parent=QUKPGENE50;Type=complete;Prot_Len=325;
+I	quickprot	exon	118564	119541	.	-	.	ID=QUKPMRNA50.p1.exon1;Parent=QUKPMRNA50.p1;
+I	quickprot	CDS	118564	119541	.	-	0	ID=QUKPMRNA50.p1.cds1;Parent=QUKPMRNA50.p1;
+
+I	quickprot	gene	120225	124295	.	+	.	ID=QUKPGENE51;
+I	quickprot	mRNA	120225	124295	295.08	+	.	ID=QUKPMRNA51.p1;Parent=QUKPGENE51;Type=complete;Prot_Len=1356;
+I	quickprot	exon	120225	124295	.	+	.	ID=QUKPMRNA51.p1.exon1;Parent=QUKPMRNA51.p1;
+I	quickprot	CDS	120225	124295	.	+	0	ID=QUKPMRNA51.p1.cds1;Parent=QUKPMRNA51.p1;
+
+I	quickprot	gene	124879	126786	.	+	.	ID=QUKPGENE52;
+I	quickprot	mRNA	124879	126786	162.92	+	.	ID=QUKPMRNA52.p1;Parent=QUKPGENE52;Type=complete;Prot_Len=635;
+I	quickprot	exon	124879	126786	.	+	.	ID=QUKPMRNA52.p1.exon1;Parent=QUKPMRNA52.p1;
+I	quickprot	CDS	124879	126786	.	+	0	ID=QUKPMRNA52.p1.cds1;Parent=QUKPMRNA52.p1;
+
+I	quickprot	gene	126903	128102	.	-	.	ID=QUKPGENE53;
+I	quickprot	mRNA	126903	128102	96.17	-	.	ID=QUKPMRNA53.p1;Parent=QUKPGENE53;Type=complete;Prot_Len=399;
+I	quickprot	exon	126903	128102	.	-	.	ID=QUKPMRNA53.p1.exon1;Parent=QUKPMRNA53.p1;
+I	quickprot	CDS	126903	128102	.	-	0	ID=QUKPMRNA53.p1.cds1;Parent=QUKPMRNA53.p1;
+
+I	quickprot	gene	128252	129019	.	-	.	ID=QUKPGENE54;
+I	quickprot	mRNA	128252	129019	72.6	-	.	ID=QUKPMRNA54.p1;Parent=QUKPGENE54;Type=complete;Prot_Len=255;
+I	quickprot	exon	128252	129019	.	-	.	ID=QUKPMRNA54.p1.exon1;Parent=QUKPMRNA54.p1;
+I	quickprot	CDS	128252	129019	.	-	0	ID=QUKPMRNA54.p1.cds1;Parent=QUKPMRNA54.p1;
+
+I	quickprot	gene	129270	130487	.	+	.	ID=QUKPGENE55;
+I	quickprot	mRNA	129270	130487	124.04	+	.	ID=QUKPMRNA55.p1;Parent=QUKPGENE55;Type=complete;Prot_Len=405;
+I	quickprot	exon	129270	130487	.	+	.	ID=QUKPMRNA55.p1.exon1;Parent=QUKPMRNA55.p1;
+I	quickprot	CDS	129270	130487	.	+	0	ID=QUKPMRNA55.p1.cds1;Parent=QUKPMRNA55.p1;
+
+I	quickprot	gene	130799	131983	.	+	.	ID=QUKPGENE56;
+I	quickprot	mRNA	130799	131983	147.56	+	.	ID=QUKPMRNA56.p1;Parent=QUKPGENE56;Type=complete;Prot_Len=394;
+I	quickprot	exon	130799	131983	.	+	.	ID=QUKPMRNA56.p1.exon1;Parent=QUKPMRNA56.p1;
+I	quickprot	CDS	130799	131983	.	+	0	ID=QUKPMRNA56.p1.cds1;Parent=QUKPMRNA56.p1;
+
+I	quickprot	gene	132199	134076	.	+	.	ID=QUKPGENE57;
+I	quickprot	mRNA	132199	134076	195.98	+	.	ID=QUKPMRNA57.p1;Parent=QUKPGENE57;Type=complete;Prot_Len=625;
+I	quickprot	exon	132199	134076	.	+	.	ID=QUKPMRNA57.p1.exon1;Parent=QUKPMRNA57.p1;
+I	quickprot	CDS	132199	134076	.	+	0	ID=QUKPMRNA57.p1.cds1;Parent=QUKPMRNA57.p1;
+
+I	quickprot	gene	134184	135665	.	-	.	ID=QUKPGENE58;
+I	quickprot	mRNA	134184	135665	105.59	-	.	ID=QUKPMRNA58.p1;Parent=QUKPGENE58;Type=complete;Prot_Len=493;
+I	quickprot	exon	134184	135665	.	-	.	ID=QUKPMRNA58.p1.exon1;Parent=QUKPMRNA58.p1;
+I	quickprot	CDS	134184	135665	.	-	0	ID=QUKPMRNA58.p1.cds1;Parent=QUKPMRNA58.p1;
+
+I	quickprot	gene	135854	136633	.	+	.	ID=QUKPGENE59;
+I	quickprot	mRNA	135854	136633	34.14	+	.	ID=QUKPMRNA59.p1;Parent=QUKPGENE59;Type=complete;Prot_Len=259;
+I	quickprot	exon	135854	136633	.	+	.	ID=QUKPMRNA59.p1.exon1;Parent=QUKPMRNA59.p1;
+I	quickprot	CDS	135854	136633	.	+	0	ID=QUKPMRNA59.p1.cds1;Parent=QUKPMRNA59.p1;
+
+I	quickprot	gene	136914	137510	.	+	.	ID=QUKPGENE60;
+I	quickprot	mRNA	136914	137510	33.97	+	.	ID=QUKPMRNA60.p1;Parent=QUKPGENE60;Type=complete;Prot_Len=198;
+I	quickprot	exon	136914	137510	.	+	.	ID=QUKPMRNA60.p1.exon1;Parent=QUKPMRNA60.p1;
+I	quickprot	CDS	136914	137510	.	+	0	ID=QUKPMRNA60.p1.cds1;Parent=QUKPMRNA60.p1;
+
+I	quickprot	gene	137698	138345	.	-	.	ID=QUKPGENE61;
+I	quickprot	mRNA	137698	138345	56.2	-	.	ID=QUKPMRNA61.p1;Parent=QUKPGENE61;Type=complete;Prot_Len=215;
+I	quickprot	exon	137698	138345	.	-	.	ID=QUKPMRNA61.p1.exon1;Parent=QUKPMRNA61.p1;
+I	quickprot	CDS	137698	138345	.	-	0	ID=QUKPMRNA61.p1.cds1;Parent=QUKPMRNA61.p1;
+
+I	quickprot	gene	139503	141431	.	-	.	ID=QUKPGENE62;
+I	quickprot	mRNA	139503	141431	280.41	-	.	ID=QUKPMRNA62.p1;Parent=QUKPGENE62;Type=complete;Prot_Len=642;
+I	quickprot	exon	139503	141431	.	-	.	ID=QUKPMRNA62.p1.exon1;Parent=QUKPMRNA62.p1;
+I	quickprot	CDS	139503	141431	.	-	0	ID=QUKPMRNA62.p1.cds1;Parent=QUKPMRNA62.p1;
+
+I	quickprot	gene	142174	143160	.	+	.	ID=QUKPGENE63;
+I	quickprot	mRNA	142174	143160	94.34	+	.	ID=QUKPMRNA63.p1;Parent=QUKPGENE63;Type=complete;Prot_Len=206;
+I	quickprot	exon	142174	142253	.	+	.	ID=QUKPMRNA63.p1.exon1;Parent=QUKPMRNA63.p1;
+I	quickprot	CDS	142174	142253	.	+	0	ID=QUKPMRNA63.p1.cds1;Parent=QUKPMRNA63.p1;
+I	quickprot	exon	142620	143160	.	+	.	ID=QUKPMRNA63.p1.exon2;Parent=QUKPMRNA63.p1;
+I	quickprot	CDS	142620	143160	.	+	1	ID=QUKPMRNA63.p1.cds2;Parent=QUKPMRNA63.p1;
+
+I	quickprot	gene	143707	147531	.	+	.	ID=QUKPGENE64;
+I	quickprot	mRNA	143707	147531	252.13	+	.	ID=QUKPMRNA64.p1;Parent=QUKPGENE64;Type=complete;Prot_Len=1274;
+I	quickprot	exon	143707	147531	.	+	.	ID=QUKPMRNA64.p1.exon1;Parent=QUKPMRNA64.p1;
+I	quickprot	CDS	143707	147531	.	+	0	ID=QUKPMRNA64.p1.cds1;Parent=QUKPMRNA64.p1;
+
+I	quickprot	gene	147594	151166	.	-	.	ID=QUKPGENE65;
+I	quickprot	mRNA	147594	151166	226.15	-	.	ID=QUKPMRNA65.p1;Parent=QUKPGENE65;Type=complete;Prot_Len=1160;
+I	quickprot	exon	151097	151166	.	-	.	ID=QUKPMRNA65.p1.exon1;Parent=QUKPMRNA65.p1;
+I	quickprot	CDS	151097	151166	.	-	0	ID=QUKPMRNA65.p1.cds1;Parent=QUKPMRNA65.p1;
+I	quickprot	exon	147594	151006	.	-	.	ID=QUKPMRNA65.p1.exon2;Parent=QUKPMRNA65.p1;
+I	quickprot	CDS	147594	151006	.	-	2	ID=QUKPMRNA65.p1.cds2;Parent=QUKPMRNA65.p1;
+
+I	quickprot	gene	152257	153876	.	+	.	ID=QUKPGENE66;
+I	quickprot	mRNA	152257	153876	124.46	+	.	ID=QUKPMRNA66.p1;Parent=QUKPGENE66;Type=complete;Prot_Len=539;
+I	quickprot	exon	152257	153876	.	+	.	ID=QUKPMRNA66.p1.exon1;Parent=QUKPMRNA66.p1;
+I	quickprot	CDS	152257	153876	.	+	0	ID=QUKPMRNA66.p1.cds1;Parent=QUKPMRNA66.p1;
+
+I	quickprot	gene	154065	154724	.	-	.	ID=QUKPGENE67;
+I	quickprot	mRNA	154065	154724	52.02	-	.	ID=QUKPMRNA67.p1;Parent=QUKPGENE67;Type=complete;Prot_Len=219;
+I	quickprot	exon	154065	154724	.	-	.	ID=QUKPMRNA67.p1.exon1;Parent=QUKPMRNA67.p1;
+I	quickprot	CDS	154065	154724	.	-	0	ID=QUKPMRNA67.p1.cds1;Parent=QUKPMRNA67.p1;
+
+I	quickprot	gene	155005	156285	.	+	.	ID=QUKPGENE68;
+I	quickprot	mRNA	155005	156285	82.69	+	.	ID=QUKPMRNA68.p1;Parent=QUKPGENE68;Type=complete;Prot_Len=426;
+I	quickprot	exon	155005	156285	.	+	.	ID=QUKPMRNA68.p1.exon1;Parent=QUKPMRNA68.p1;
+I	quickprot	CDS	155005	156285	.	+	0	ID=QUKPMRNA68.p1.cds1;Parent=QUKPMRNA68.p1;
+
+I	quickprot	gene	156754	158619	.	-	.	ID=QUKPGENE69;
+I	quickprot	mRNA	156754	158619	159.68	-	.	ID=QUKPMRNA69.p1;Parent=QUKPGENE69;Type=complete;Prot_Len=621;
+I	quickprot	exon	156754	158619	.	-	.	ID=QUKPMRNA69.p1.exon1;Parent=QUKPMRNA69.p1;
+I	quickprot	CDS	156754	158619	.	-	0	ID=QUKPMRNA69.p1.cds1;Parent=QUKPMRNA69.p1;
+
+I	quickprot	gene	158966	159793	.	+	.	ID=QUKPGENE70;
+I	quickprot	mRNA	158966	159793	58.63	+	.	ID=QUKPMRNA70.p1;Parent=QUKPGENE70;Type=complete;Prot_Len=275;
+I	quickprot	exon	158966	159793	.	+	.	ID=QUKPMRNA70.p1.exon1;Parent=QUKPMRNA70.p1;
+I	quickprot	CDS	158966	159793	.	+	0	ID=QUKPMRNA70.p1.cds1;Parent=QUKPMRNA70.p1;
+
+I	quickprot	gene	164544	165866	.	-	.	ID=QUKPGENE71;
+I	quickprot	mRNA	164544	165866	82.67	-	.	ID=QUKPMRNA71.p1;Parent=QUKPGENE71;Type=complete;Prot_Len=440;
+I	quickprot	exon	164544	165866	.	-	.	ID=QUKPMRNA71.p1.exon1;Parent=QUKPMRNA71.p1;
+I	quickprot	CDS	164544	165866	.	-	0	ID=QUKPMRNA71.p1.cds1;Parent=QUKPMRNA71.p1;
+
+I	quickprot	gene	166742	168871	.	-	.	ID=QUKPGENE72;
+I	quickprot	mRNA	166742	168871	197.37	-	.	ID=QUKPMRNA72.p1;Parent=QUKPGENE72;Type=complete;Prot_Len=709;
+I	quickprot	exon	166742	168871	.	-	.	ID=QUKPMRNA72.p1.exon1;Parent=QUKPMRNA72.p1;
+I	quickprot	CDS	166742	168871	.	-	0	ID=QUKPMRNA72.p1.cds1;Parent=QUKPMRNA72.p1;
+
+I	quickprot	gene	169375	170295	.	+	.	ID=QUKPGENE73;
+I	quickprot	mRNA	169375	170295	81.98	+	.	ID=QUKPMRNA73.p1;Parent=QUKPGENE73;Type=complete;Prot_Len=306;
+I	quickprot	exon	169375	170295	.	+	.	ID=QUKPMRNA73.p1.exon1;Parent=QUKPMRNA73.p1;
+I	quickprot	CDS	169375	170295	.	+	0	ID=QUKPMRNA73.p1.cds1;Parent=QUKPMRNA73.p1;
+
+I	quickprot	gene	170396	171703	.	-	.	ID=QUKPGENE74;
+I	quickprot	mRNA	170396	171703	94.98	-	.	ID=QUKPMRNA74.p1;Parent=QUKPGENE74;Type=complete;Prot_Len=435;
+I	quickprot	exon	170396	171703	.	-	.	ID=QUKPMRNA74.p1.exon1;Parent=QUKPMRNA74.p1;
+I	quickprot	CDS	170396	171703	.	-	0	ID=QUKPMRNA74.p1.cds1;Parent=QUKPMRNA74.p1;
+
+I	quickprot	gene	172211	175135	.	-	.	ID=QUKPGENE75;
+I	quickprot	mRNA	172211	175135	212.3	-	.	ID=QUKPMRNA75.p1;Parent=QUKPGENE75;Type=complete;Prot_Len=974;
+I	quickprot	exon	172211	175135	.	-	.	ID=QUKPMRNA75.p1.exon1;Parent=QUKPMRNA75.p1;
+I	quickprot	CDS	172211	175135	.	-	0	ID=QUKPMRNA75.p1.cds1;Parent=QUKPMRNA75.p1;
+
+I	quickprot	gene	179281	179820	.	-	.	ID=QUKPGENE76;
+I	quickprot	mRNA	179281	179820	26.98	-	.	ID=QUKPMRNA76.p1;Parent=QUKPGENE76;Type=complete;Prot_Len=179;
+I	quickprot	exon	179281	179820	.	-	.	ID=QUKPMRNA76.p1.exon1;Parent=QUKPMRNA76.p1;
+I	quickprot	CDS	179281	179820	.	-	0	ID=QUKPMRNA76.p1.cds1;Parent=QUKPMRNA76.p1;
+
+I	quickprot	gene	183770	184477	.	+	.	ID=QUKPGENE77;
+I	quickprot	mRNA	183770	184477	38.37	+	.	ID=QUKPMRNA77.p1;Parent=QUKPGENE77;Type=complete;Prot_Len=235;
+I	quickprot	exon	183770	184477	.	+	.	ID=QUKPMRNA77.p1.exon1;Parent=QUKPMRNA77.p1;
+I	quickprot	CDS	183770	184477	.	+	0	ID=QUKPMRNA77.p1.cds1;Parent=QUKPMRNA77.p1;
+
+I	quickprot	gene	184892	185596	.	+	.	ID=QUKPGENE78;
+I	quickprot	mRNA	184892	185596	49.13	+	.	ID=QUKPMRNA78.p1;Parent=QUKPGENE78;Type=complete;Prot_Len=234;
+I	quickprot	exon	184892	185596	.	+	.	ID=QUKPMRNA78.p1.exon1;Parent=QUKPMRNA78.p1;
+I	quickprot	CDS	184892	185596	.	+	0	ID=QUKPMRNA78.p1.cds1;Parent=QUKPMRNA78.p1;
+
+I	quickprot	gene	186836	187732	.	+	.	ID=QUKPGENE79;
+I	quickprot	mRNA	186836	187732	57.12	+	.	ID=QUKPMRNA79.p1;Parent=QUKPGENE79;Type=complete;Prot_Len=298;
+I	quickprot	exon	186836	187732	.	+	.	ID=QUKPMRNA79.p1.exon1;Parent=QUKPMRNA79.p1;
+I	quickprot	CDS	186836	187732	.	+	0	ID=QUKPMRNA79.p1.cds1;Parent=QUKPMRNA79.p1;
+
+I	quickprot	gene	188107	188811	.	+	.	ID=QUKPGENE80;
+I	quickprot	mRNA	188107	188811	48.06	+	.	ID=QUKPMRNA80.p1;Parent=QUKPGENE80;Type=complete;Prot_Len=234;
+I	quickprot	exon	188107	188811	.	+	.	ID=QUKPMRNA80.p1.exon1;Parent=QUKPMRNA80.p1;
+I	quickprot	CDS	188107	188811	.	+	0	ID=QUKPMRNA80.p1.cds1;Parent=QUKPMRNA80.p1;
+
+I	quickprot	gene	190193	192256	.	+	.	ID=QUKPGENE81;
+I	quickprot	mRNA	190193	192256	176.37	+	.	ID=QUKPMRNA81.p1;Parent=QUKPGENE81;Type=complete;Prot_Len=687;
+I	quickprot	exon	190193	192256	.	+	.	ID=QUKPMRNA81.p1.exon1;Parent=QUKPMRNA81.p1;
+I	quickprot	CDS	190193	192256	.	+	0	ID=QUKPMRNA81.p1.cds1;Parent=QUKPMRNA81.p1;
+
+I	quickprot	gene	192619	196185	.	+	.	ID=QUKPGENE82;
+I	quickprot	mRNA	192619	196185	347.21	+	.	ID=QUKPMRNA82.p1;Parent=QUKPGENE82;Type=complete;Prot_Len=1188;
+I	quickprot	exon	192619	196185	.	+	.	ID=QUKPMRNA82.p1.exon1;Parent=QUKPMRNA82.p1;
+I	quickprot	CDS	192619	196185	.	+	0	ID=QUKPMRNA82.p1.cds1;Parent=QUKPMRNA82.p1;
+
+I	quickprot	gene	201467	201787	.	-	.	ID=QUKPGENE83;
+I	quickprot	mRNA	201467	201787	7.07	-	.	ID=QUKPMRNA83.p1;Parent=QUKPGENE83;Type=complete;Prot_Len=106;
+I	quickprot	exon	201467	201787	.	-	.	ID=QUKPMRNA83.p1.exon1;Parent=QUKPMRNA83.p1;
+I	quickprot	CDS	201467	201787	.	-	0	ID=QUKPMRNA83.p1.cds1;Parent=QUKPMRNA83.p1;
+
+I	quickprot	gene	203403	208016	.	+	.	ID=QUKPGENE84;
+I	quickprot	mRNA	203403	208016	571.76	+	.	ID=QUKPMRNA84.p1;Parent=QUKPGENE84;Type=complete;Prot_Len=1099;
+I	quickprot	exon	203403	204255	.	+	.	ID=QUKPMRNA84.p1.exon1;Parent=QUKPMRNA84.p1;
+I	quickprot	CDS	203403	204255	.	+	0	ID=QUKPMRNA84.p1.cds1;Parent=QUKPMRNA84.p1;
+I	quickprot	exon	205570	208016	.	+	.	ID=QUKPMRNA84.p1.exon2;Parent=QUKPMRNA84.p1;
+I	quickprot	CDS	205570	208016	.	+	2	ID=QUKPMRNA84.p1.cds2;Parent=QUKPMRNA84.p1;
+
+I	quickprot	gene	217157	217492	.	-	.	ID=QUKPGENE85;
+I	quickprot	mRNA	217157	217492	9.78	-	.	ID=QUKPMRNA85.p1;Parent=QUKPGENE85;Type=complete;Prot_Len=111;
+I	quickprot	exon	217157	217492	.	-	.	ID=QUKPMRNA85.p1.exon1;Parent=QUKPMRNA85.p1;
+I	quickprot	CDS	217157	217492	.	-	0	ID=QUKPMRNA85.p1.cds1;Parent=QUKPMRNA85.p1;
+
+I	quickprot	gene	218549	219145	.	+	.	ID=QUKPGENE86;
+I	quickprot	mRNA	218549	219145	88.02	+	.	ID=QUKPMRNA86.p1;Parent=QUKPGENE86;Type=complete;Prot_Len=198;
+I	quickprot	exon	218549	219145	.	+	.	ID=QUKPMRNA86.p1.exon1;Parent=QUKPMRNA86.p1;
+I	quickprot	CDS	218549	219145	.	+	0	ID=QUKPMRNA86.p1.cds1;Parent=QUKPMRNA86.p1;
+
+I	quickprot	gene	220198	220497	.	+	.	ID=QUKPGENE87;
+I	quickprot	mRNA	220198	220497	10.79	+	.	ID=QUKPMRNA87.p1;Parent=QUKPGENE87;Type=complete;Prot_Len=99;
+I	quickprot	exon	220198	220497	.	+	.	ID=QUKPMRNA87.p1.exon1;Parent=QUKPMRNA87.p1;
+I	quickprot	CDS	220198	220497	.	+	0	ID=QUKPMRNA87.p1.cds1;Parent=QUKPMRNA87.p1;
+
+I	quickprot	gene	221049	221660	.	+	.	ID=QUKPGENE88;
+I	quickprot	mRNA	221049	221660	59.82	+	.	ID=QUKPMRNA88.p1;Parent=QUKPGENE88;Type=complete;Prot_Len=203;
+I	quickprot	exon	221049	221660	.	+	.	ID=QUKPMRNA88.p1.exon1;Parent=QUKPMRNA88.p1;
+I	quickprot	CDS	221049	221660	.	+	0	ID=QUKPMRNA88.p1.cds1;Parent=QUKPMRNA88.p1;
+
+I	quickprot	gene	222408	222890	.	+	.	ID=QUKPGENE89;
+I	quickprot	mRNA	222408	222890	57.4	+	.	ID=QUKPMRNA89.p1;Parent=QUKPGENE89;Type=internal;Prot_Len=161;
+I	quickprot	exon	222408	222890	.	+	.	ID=QUKPMRNA89.p1.exon1;Parent=QUKPMRNA89.p1;
+I	quickprot	CDS	222408	222890	.	+	0	ID=QUKPMRNA89.p1.cds1;Parent=QUKPMRNA89.p1;
+
+I	quickprot	gene	224563	224862	.	-	.	ID=QUKPGENE90;
+I	quickprot	mRNA	224563	224862	1.28	-	.	ID=QUKPMRNA90.p1;Parent=QUKPGENE90;Type=complete;Prot_Len=99;
+I	quickprot	exon	224563	224862	.	-	.	ID=QUKPMRNA90.p1.exon1;Parent=QUKPMRNA90.p1;
+I	quickprot	CDS	224563	224862	.	-	0	ID=QUKPMRNA90.p1.cds1;Parent=QUKPMRNA90.p1;
+
+I	quickprot	gene	225460	226863	.	+	.	ID=QUKPGENE91;
+I	quickprot	mRNA	225460	226863	139.44	+	.	ID=QUKPMRNA91.p1;Parent=QUKPGENE91;Type=complete;Prot_Len=467;
+I	quickprot	exon	225460	226863	.	+	.	ID=QUKPMRNA91.p1.exon1;Parent=QUKPMRNA91.p1;
+I	quickprot	CDS	225460	226863	.	+	0	ID=QUKPMRNA91.p1.cds1;Parent=QUKPMRNA91.p1;
+
+I	quickprot	gene	227742	228953	.	+	.	ID=QUKPGENE92;
+I	quickprot	mRNA	227742	228953	121.54	+	.	ID=QUKPMRNA92.p1;Parent=QUKPGENE92;Type=complete;Prot_Len=403;
+I	quickprot	exon	227742	228953	.	+	.	ID=QUKPMRNA92.p1.exon1;Parent=QUKPMRNA92.p1;
+I	quickprot	CDS	227742	228953	.	+	0	ID=QUKPMRNA92.p1.cds1;Parent=QUKPMRNA92.p1;
+

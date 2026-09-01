@@ -114,6 +114,39 @@ Download the Singularity image [here](https://zenodo.org/records/21103261/files/
 singularity exec -B PATH -e quickprot.v1.9.0.sif quickprot.py -q protein.fasta -g genome.fasta
 ```
 
+## Test run
+
+If you clone this repository, you can perform a test run of QuickProt using `pytest`. This may be useful if you wish to contribute to development.
+
+First, it is convenient to set up a Conda environment for QuickProt testing:
+
+```sh
+git clone https://github.com/thecgs/quickprot.git
+conda env create -f quickprot/test/environment.yml
+conda activate quickprot-pytest
+```
+
+To perform the test run, simply clone and navigate to the repository, and run `pytest`.
+
+```sh
+cd quickprot
+pytest -s
+```
+
+The included test datasets in `test/data` are FASTA files containing:
+- A collection of approximately 8,000 *Saccharomyces* protein sequences downloaded from [UniProt](https://www.uniprot.org) (query proteins, Swiss-prot reviewed with tax ID 4930)
+- Chromosome 1 of *Saccharomyces cerevisiae* from [Ensembl](https://mart.ensembl.org/Saccharomyces_cerevisiae/Info/Index) (genome, softmasked).
+
+When the test is executed, `pytest` will carry out annotation of the toy genome sequence with the toy protein query set and check for equality of the output files with a set of reference outputs found in `test/data/output` using MD5 checksums. If all test outputs are equal to the references, the test run will pass, if not, it will fail.
+
+If you include the option `--TD2`, `pytest` will carry out two test runs, one using TransDecoder and a second one using TD2.
+
+```sh
+pytest -s --TD2
+```
+
+> Note: TD2's outputs are not as deterministic, so only the miniprot output and transcript assembly will be checked
+
 ## Cite QuickProt:
 
 If you use QuickProt, please cite:
