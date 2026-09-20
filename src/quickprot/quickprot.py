@@ -59,7 +59,7 @@ def check_dependencies(ORFSoftware, miniprot_PATH=None, TransDecoder_PATH=None):
                 if os.path.exists(os.path.join(PATH, 'TransDecoder.Predict')):
                     TransDecoder_PATH = PATH
                     break
-        if TransDecoder_PATH == None:
+        if TransDecoder_PATH == None and not ORFSoftware == "TD2":
             print('Error: TransDecoder does not exist! Trying TD2')
             ORFSoftware = "TD2"
         else:
