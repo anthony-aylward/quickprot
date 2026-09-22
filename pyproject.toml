@@ -46,6 +46,7 @@ script-files = [
     "src/quickprot/update_gff3_from_minibusco.py",
     "src/quickprot/gtf_to_alignment_gff3.pl",
     "src/quickprot/cdna_alignment_orf_to_genome_orf.pl",
+    "src/quickprot/gff3_file_to_proteins.pl",
     "src/quickprot/Fasta_reader.pm",
     "src/quickprot/Gene_obj.pm",
     "src/quickprot/GFF3_utils2.pm",
